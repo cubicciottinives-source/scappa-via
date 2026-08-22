@@ -3,393 +3,633 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Scappa Via: trova offerte di viaggio, weekend e occasioni last minute.">
-<meta name="theme-color" content="#082238">
-  
-  <script nowprocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1" data-cmp-ab="2">
-  (function () {
-      var script = document.createElement("script");
-      script.async = 1;
-      script.setAttribute("data-cmp-ab","2");
-      script.src = 'https://tpembars.com/NTY0NTM2.js?t=564536';
-      document.head.appendChild(script);
-  })();
-</script>
-  
-<!--
-  SCAPPA VIA - Integration-ready architecture
-  Providers:
-    - Travelpayouts: affiliate hub / APIs
-    - Booking.com: hotel affiliate
-    - Skyscanner: flight affiliate
-  IMPORTANT: never expose private API keys in this frontend file.
-  Backend endpoints expected:
-    GET  /api/search?from=...&to=...&dateFrom=...&dateTo=...&adults=...
-    GET  /api/offers/:id
-    POST /api/newsletter
-    POST /api/click
--->
-<link rel="icon" href="data:,">
+
 <title>Scappa Via | Offerte di viaggio</title>
+
 <style>
-:root{
-  --navy:#082238;--blue:#008fe0;--blue2:#0068c9;--orange:#ff7410;
-  --bg:#f5f8fb;--text:#102a43;--muted:#66788a;--white:#fff;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:Arial,Helvetica,sans-serif;color:var(--text);background:var(--bg);line-height:1.5}
-button,input,select{font:inherit}
-button,a{cursor:pointer}
-header{position:absolute;top:0;left:0;width:100%;padding:22px 6%;display:flex;justify-content:space-between;align-items:center;z-index:20;color:#fff}
-.logo{font-size:28px;font-weight:800;letter-spacing:-1px}
-nav{display:flex;gap:28px}
-nav a{color:#fff;text-decoration:none;font-weight:600}
-nav a:hover{opacity:.8}
-.hero{min-height:700px;padding:170px 6% 100px;color:#fff;text-align:center;background:
-linear-gradient(rgba(5,35,60,.70),rgba(0,80,130,.78)),
-linear-gradient(135deg,#00aef0,#0066cc)}
-.hero h1{font-size:64px;line-height:1.05;margin-bottom:22px}
-.hero>p{font-size:21px;max-width:650px;margin:0 auto 40px;line-height:1.6}
-.search{max-width:1050px;margin:auto;background:#fff;padding:12px;border-radius:18px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr 150px 160px;gap:10px;box-shadow:0 15px 40px rgba(0,0,0,.25)}
-.search input{width:100%;padding:18px;border:1px solid #ddd;border-radius:12px;font-size:15px;color:var(--text)}
-.search button,.newsletter button{border:none;border-radius:12px;background:var(--orange);color:#fff;font-weight:bold;cursor:pointer}
-.search button:hover,.newsletter button:hover{filter:brightness(.93)}
-.search-note{font-size:13px;margin-top:12px;opacity:.9}
-.container{max-width:1200px;margin:auto;padding:75px 25px}
-.title{text-align:center;margin-bottom:40px}
-.title h2{font-size:38px;margin-bottom:10px}
-.title p{color:var(--muted)}
-.deals{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
-.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.08);transition:.25s}
-.card:hover{transform:translateY(-6px);box-shadow:0 15px 35px rgba(0,0,0,.13)}
-.photo{height:210px;display:flex;justify-content:center;align-items:center;font-size:75px;background:linear-gradient(135deg,#dff6ff,#b5e3ff)}
-.card-content{padding:25px}
-.badge{display:inline-block;background:#fff0e5;color:#e76500;padding:6px 10px;border-radius:20px;font-size:12px;font-weight:bold;margin-bottom:12px}
-.card h3{font-size:25px;margin-bottom:8px}
-.details{color:var(--muted);font-size:14px}
-.price{margin:18px 0}.old{color:#8996a3;text-decoration:line-through;margin-right:8px}.new{color:#ff6900;font-size:29px;font-weight:800}
-.button{display:block;text-align:center;padding:13px;background:#0b1f33;color:#fff;text-decoration:none;border-radius:10px;font-weight:bold}
-.button:hover{background:#143b5c}
-.categories{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.category{background:#fff;padding:35px 20px;text-align:center;border-radius:18px;font-size:20px;font-weight:bold;box-shadow:0 8px 25px rgba(0,0,0,.06);border:0;color:var(--text)}
-.category:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.1)}
-.category span{display:block;font-size:45px;margin-bottom:15px}
-.newsletter{margin:20px auto 80px;max-width:1100px;padding:65px 25px;border-radius:25px;text-align:center;color:#fff;background:linear-gradient(135deg,#0b1f33,#073d63)}
-.newsletter h2{font-size:35px;margin-bottom:12px}.newsletter p{margin-bottom:25px;color:#d7e7f2}
-.newsletter input{width:320px;max-width:90%;padding:16px;border:none;border-radius:10px;margin-right:6px;outline:none}
-.newsletter button{padding:16px 22px;border-radius:10px}
-#messaggio{min-height:24px;margin:18px 0 0!important}
-footer{background:#071522;color:#fff;text-align:center;padding:40px 20px}footer p{margin-top:10px;color:#9db1c0}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:50;padding:20px;align-items:center;justify-content:center}
-.modal.open{display:flex}
-.modal-box{background:#fff;border-radius:20px;max-width:520px;width:100%;padding:30px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.3)}
-.close{position:absolute;right:18px;top:12px;border:0;background:none;font-size:30px;color:#66788a}
-.modal-box h3{font-size:28px;margin-bottom:8px}.modal-box p{color:var(--muted);margin-bottom:18px}
-.modal-box .modal-action{display:block;text-align:center;background:var(--orange);color:#fff;text-decoration:none;padding:14px;border-radius:10px;font-weight:bold}
-.results{display:none;max-width:1050px;margin:18px auto 0;background:#fff;color:var(--text);border-radius:14px;padding:18px;text-align:left}
-.results.show{display:block}
-.result-row{padding:12px;border-bottom:1px solid #e7edf2;display:flex;justify-content:space-between;gap:15px}
-.result-row:last-child{border-bottom:0}.result-row strong{display:block}.result-row span{color:var(--muted);font-size:13px}
-.toast{position:fixed;right:20px;bottom:20px;background:#082238;color:#fff;padding:14px 18px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.2);display:none;z-index:60}
-.toast.show{display:block}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    color:#102a43;
+    background:#f6f8fb;
+}
+
+header{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    padding:22px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:10;
+    color:white;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:800;
+    letter-spacing:-1px;
+}
+
+nav{
+    display:flex;
+    gap:28px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.hero{
+    min-height:650px;
+    padding:170px 6% 100px;
+    color:white;
+    text-align:center;
+
+    background:
+    linear-gradient(
+        rgba(5,35,60,.65),
+        rgba(0,80,130,.70)
+    ),
+    linear-gradient(135deg,#00aef0,#0066cc);
+}
+
+.hero h1{
+    font-size:64px;
+    line-height:1.05;
+    margin-bottom:22px;
+}
+
+.hero p{
+    font-size:21px;
+    max-width:650px;
+    margin:0 auto 40px;
+    line-height:1.6;
+}
+
+.search{
+    max-width:1000px;
+    margin:auto;
+    background:white;
+    padding:12px;
+    border-radius:18px;
+    display:grid;
+    grid-template-columns:1fr 1fr 150px;
+    gap:10px;
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+.search input{
+    width:100%;
+    padding:18px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    font-size:15px;
+}
+
+.search button{
+    border:none;
+    border-radius:12px;
+    background:#ff7a00;
+    color:white;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:75px 25px;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.title h2{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.title p{
+    color:#657786;
+}
+
+.deals{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 8px 30px rgba(0,0,0,.08);
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 15px 35px rgba(0,0,0,.13);
+}
+
+.photo{
+    height:210px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:75px;
+    background:linear-gradient(135deg,#dff6ff,#b5e3ff);
+}
+
+.card-content{
+    padding:25px;
+}
+
+.badge{
+    display:inline-block;
+    background:#fff0e5;
+    color:#e76500;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.card h3{
+    font-size:25px;
+    margin-bottom:8px;
+}
+
+.details{
+    color:#66788a;
+    font-size:14px;
+}
+
+.price{
+    margin:18px 0;
+}
+
+.old{
+    color:#8996a3;
+    text-decoration:line-through;
+    margin-right:8px;
+}
+
+.new{
+    color:#ff6900;
+    font-size:29px;
+    font-weight:800;
+}
+
+.button{
+    display:block;
+    text-align:center;
+    padding:13px;
+    background:#0b1f33;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.categories{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.category{
+    background:white;
+    padding:35px 20px;
+    text-align:center;
+    border-radius:18px;
+    font-size:20px;
+    font-weight:bold;
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+}
+
+.category span{
+    display:block;
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.newsletter{
+    margin:20px auto 80px;
+    max-width:1100px;
+    padding:65px 25px;
+    border-radius:25px;
+    text-align:center;
+    color:white;
+    background:linear-gradient(135deg,#0b1f33,#073d63);
+}
+
+.newsletter h2{
+    font-size:35px;
+    margin-bottom:12px;
+}
+
+.newsletter p{
+    margin-bottom:25px;
+    color:#d7e7f2;
+}
+
+.newsletter input{
+    width:320px;
+    max-width:90%;
+    padding:16px;
+    border:none;
+    border-radius:10px;
+    margin-right:6px;
+}
+
+.newsletter button{
+    padding:16px 22px;
+    border:none;
+    border-radius:10px;
+    background:#ff7a00;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+footer{
+    background:#071522;
+    color:white;
+    text-align:center;
+    padding:40px 20px;
+}
+
+footer p{
+    margin-top:10px;
+    color:#9db1c0;
+}
+
 @media(max-width:850px){
- .hero h1{font-size:45px}.deals{grid-template-columns:1fr}.categories{grid-template-columns:1fr 1fr}
- .search{grid-template-columns:1fr}.search button{padding:16px}
+
+    .hero h1{
+        font-size:45px;
+    }
+
+    .deals{
+        grid-template-columns:1fr;
+    }
+
+    .categories{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .search{
+        grid-template-columns:1fr;
+    }
+
 }
+
 @media(max-width:500px){
- header{position:absolute;flex-direction:column;gap:15px}nav{gap:15px;font-size:14px}
- .hero{padding-top:190px}.hero h1{font-size:38px}.categories{grid-template-columns:1fr}
- .newsletter input{margin-bottom:10px;width:90%}
+
+    header{
+        position:absolute;
+        flex-direction:column;
+        gap:15px;
+    }
+
+    nav{
+        gap:15px;
+        font-size:14px;
+    }
+
+    .hero{
+        padding-top:190px;
+    }
+
+    .hero h1{
+        font-size:38px;
+    }
+
+    .categories{
+        grid-template-columns:1fr;
+    }
+
+    .newsletter input{
+        margin-bottom:10px;
+        width:90%;
+    }
+
 }
+
 </style>
 </head>
+
 <body>
+
 <header>
-  <div class="logo">SCAPPA VIA ✈️</div>
-  <nav>
-    <a href="#">Home</a><a href="#offerte">Offerte</a><a href="#categorie">Destinazioni</a><a href="#newsletter">Newsletter</a>
-  </nav>
+
+<div class="logo">
+SCAPPA VIA ✈️
+</div>
+
+<nav>
+<a href="#">Home</a>
+<a href="#offerte">Offerte</a>
+<a href="#categorie">Destinazioni</a>
+<a href="#newsletter">Newsletter</a>
+</nav>
+
 </header>
 
+
 <section class="hero">
-  <h1>Dove vuoi scappare?</h1>
-  <p>Trova offerte di viaggio, weekend e occasioni last minute senza perdere ore a cercare.</p>
-  <div class="search">
-    <input id="from" type="text" placeholder="Da dove parti?" aria-label="Da dove parti">
-    <input id="to" type="text" placeholder="Dove vuoi andare?" aria-label="Dove vuoi andare">
-    <input id="dateFrom" type="date" aria-label="Data partenza">
-    <input id="dateTo" type="date" aria-label="Data ritorno">
-    <select id="adults" aria-label="Numero adulti">
-      <option value="1">1 adulto</option>
-      <option value="2" selected>2 adulti</option>
-      <option value="3">3 adulti</option>
-      <option value="4">4 adulti</option>
-      <option value="5">5 adulti</option>
-    </select>
-    <button onclick="cerca()">CERCA</button>
-  </div>
-  <div id="results" class="results" aria-live="polite"></div>
-  <div class="search-note">Prova: Roma → Parigi</div>
+
+<h1>Dove vuoi scappare?</h1>
+
+<p>
+Trova offerte di viaggio, weekend e occasioni last minute
+senza perdere ore a cercare.
+</p>
+
+<div class="search">
+
+<input
+type="text"
+placeholder="Da dove parti?"
+>
+
+<input
+type="text"
+placeholder="Dove vuoi andare?"
+>
+
+<button onclick="cerca()">
+CERCA
+</button>
+
+</div>
+
 </section>
+
 
 <section class="container" id="offerte">
-  <div class="title"><h2>🔥 Offerte del momento</h2><p>Alcuni esempi di come verranno visualizzate le offerte.</p></div>
-  <div class="deals">
-    <article class="card" data-offer-id="demo-paris-001" data-provider="travelpayouts"><div class="photo">🇫🇷</div><div class="card-content"><span class="badge">WEEKEND</span><h3>Parigi</h3><p class="details">✈️ Volo + soggiorno · 3 notti</p><div class="price"><span class="old">€220</span><span class="new">€149</span></div><a href="#" class="button" onclick="apriOfferta(event,'Parigi','3 notti','€149')">SCOPRI L'OFFERTA</a></div></article>
-    <article class="card" data-offer-id="demo-barcelona-001" data-provider="travelpayouts"><div class="photo">🇪🇸</div><div class="card-content"><span class="badge">LAST MINUTE</span><h3>Barcellona</h3><p class="details">✈️ Volo + soggiorno · 3 notti</p><div class="price"><span class="old">€210</span><span class="new">€129</span></div><a href="#" class="button" onclick="apriOfferta(event,'Barcellona','3 notti','€129')">SCOPRI L'OFFERTA</a></div></article>
-    <article class="card" data-offer-id="demo-budapest-001" data-provider="travelpayouts"><div class="photo">🇭🇺</div><div class="card-content"><span class="badge">LOW COST</span><h3>Budapest</h3><p class="details">✈️ Volo + soggiorno · 2 notti</p><div class="price"><span class="old">€170</span><span class="new">€99</span></div><a href="#" class="button" onclick="apriOfferta(event,'Budapest','2 notti','€99')">SCOPRI L'OFFERTA</a></div></article>
-  </div>
+
+<div class="title">
+
+<h2>🔥 Offerte del momento</h2>
+
+<p>
+Alcuni esempi di come verranno visualizzate le offerte.
+</p>
+
+</div>
+
+
+<div class="deals">
+
+
+<div class="card">
+
+<div class="photo">
+🇫🇷
+</div>
+
+<div class="card-content">
+
+<span class="badge">
+WEEKEND
+</span>
+
+<h3>Parigi</h3>
+
+<p class="details">
+✈️ Volo + soggiorno · 3 notti
+</p>
+
+<div class="price">
+
+<span class="old">€220</span>
+
+<span class="new">€149</span>
+
+</div>
+
+<a href="https://www.google.com/search?q=voli+Roma+Parigi" class="button" target="_blank" rel="noopener">
+SCOPRI L'OFFERTA
+</a>
+
+</div>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="photo">
+🇪🇸
+</div>
+
+<div class="card-content">
+
+<span class="badge">
+LAST MINUTE
+</span>
+
+<h3>Barcellona</h3>
+
+<p class="details">
+✈️ Volo + soggiorno · 3 notti
+</p>
+
+<div class="price">
+
+<span class="old">€210</span>
+
+<span class="new">€129</span>
+
+</div>
+
+<a href="https://www.google.com/search?q=voli+Roma+Barcellona" class="button" target="_blank" rel="noopener">
+SCOPRI L'OFFERTA
+</a>
+
+</div>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="photo">
+🇭🇺
+</div>
+
+<div class="card-content">
+
+<span class="badge">
+LOW COST
+</span>
+
+<h3>Budapest</h3>
+
+<p class="details">
+✈️ Volo + soggiorno · 2 notti
+</p>
+
+<div class="price">
+
+<span class="old">€170</span>
+
+<span class="new">€99</span>
+
+</div>
+
+<a href="https://www.google.com/search?q=voli+Roma+Budapest" class="button" target="_blank" rel="noopener">
+SCOPRI L'OFFERTA
+</a>
+
+</div>
+
+</div>
+
+
+</div>
+
 </section>
+
 
 <section class="container" id="categorie">
-  <div class="title"><h2>🌍 Esplora per tipo</h2><p>Trova l'idea perfetta per la tua prossima fuga.</p></div>
-  <div class="categories">
-    <button class="category" onclick="filtra('Voli')"><span>✈️</span>Voli</button>
-    <button class="category" onclick="filtra('Mare')"><span>🏖️</span>Mare</button>
-    <button class="category" onclick="filtra('Weekend')"><span>🏙️</span>Weekend</button>
-    <button class="category" onclick="filtra('Last Minute')"><span>🔥</span>Last Minute</button>
-  </div>
+
+<div class="title">
+
+<h2>🌍 Esplora per tipo</h2>
+
+<p>
+Trova l'idea perfetta per la tua prossima fuga.
+</p>
+
+</div>
+
+
+<div class="categories">
+
+<div class="category">
+<span>✈️</span>
+Voli
+</div>
+
+<div class="category">
+<span>🏖️</span>
+Mare
+</div>
+
+<div class="category">
+<span>🏙️</span>
+Weekend
+</div>
+
+<div class="category">
+<span>🔥</span>
+Last Minute
+</div>
+
+</div>
+
 </section>
+
 
 <section class="newsletter" id="newsletter">
-  <h2>📩 Le offerte migliori arrivano prima qui</h2>
-  <p>Iscriviti e scopri nuove occasioni di viaggio.</p>
-  <input type="email" id="email" placeholder="La tua email" aria-label="La tua email">
-  <button onclick="iscriviti()">ISCRIVITI</button>
-  <p id="messaggio" aria-live="polite"></p>
+
+<h2>
+📩 Le offerte migliori arrivano prima qui
+</h2>
+
+<p>
+Iscriviti e scopri nuove occasioni di viaggio.
+</p>
+
+<input
+type="email"
+id="email"
+placeholder="La tua email"
+>
+
+<button onclick="iscriviti()">
+ISCRIVITI
+</button>
+
+<p id="messaggio"></p>
+
 </section>
 
-<section class="container" id="architettura">
-  <div class="title">
-    <h2>⚙️ Pronto per le integrazioni</h2>
-    <p>La pagina è predisposta per collegare ricerca, offerte, tracking e partner esterni tramite un backend sicuro.</p>
-  </div>
-  <div class="categories">
-    <div class="category"><span>✈️</span>Voli API</div>
-    <div class="category"><span>🏨</span>Hotel API</div>
-    <div class="category"><span>🔗</span>Affiliate tracking</div>
-    <div class="category"><span>📩</span>Newsletter API</div>
-  </div>
-</section>
 
-<footer><h3>SCAPPA VIA ✈️</h3><p>Trova l'offerta. Prepara la valigia. Parti.</p><p>© 2026 Scappa Via</p></footer>
+<footer>
 
-<div class="modal" id="modal" onclick="chiudiModal(event)">
-  <div class="modal-box">
-    <button class="close" onclick="chiudiModal()" aria-label="Chiudi">×</button>
-    <h3 id="modalTitle"></h3><p id="modalText"></p>
-    <a class="modal-action" href="#newsletter" onclick="chiudiModal()">RICEVI L'OFFERTA</a>
-  </div>
-</div>
-<div class="toast" id="toast" aria-live="polite"></div>
+<h3>
+SCAPPA VIA ✈️
+</h3>
+
+<p>
+Trova l'offerta. Prepara la valigia. Parti.
+</p>
+
+<p>
+© 2026 Scappa Via
+</p>
+
+</footer>
+
 
 <script>
-/*
- * SCAPPA VIA - Frontend integration layer
- *
- * Production flow:
- * 1) Browser sends search criteria to YOUR backend.
- * 2) Backend calls approved provider APIs / affiliate services.
- * 3) Backend normalizes results into the Offer schema below.
- * 4) Browser renders normalized offers.
- * 5) Clicks are sent to /api/click before redirecting to provider.
- *
- * Do NOT put provider secrets, API keys or private credentials here.
- */
 
-const API_BASE = window.SCAPPAVIA_API_BASE || "";
-const DEMO_MODE = true; // Set false after deploying the backend.
-
-const offerte = [
-  {id:"demo-paris-001", citta:"Parigi", emoji:"🇫🇷", tipo:"Weekend", prezzo:"€149", notti:"3 notti", provider:"travelpayouts"},
-  {id:"demo-barcelona-001", citta:"Barcellona", emoji:"🇪🇸", tipo:"Last Minute", prezzo:"€129", notti:"3 notti", provider:"travelpayouts"},
-  {id:"demo-budapest-001", citta:"Budapest", emoji:"🇭🇺", tipo:"Voli", prezzo:"€99", notti:"2 notti", provider:"travelpayouts"}
-];
-
-/* Normalized offer contract expected from backend. */
-function normalizeOffer(raw) {
-  return {
-    id: raw.id ?? crypto.randomUUID(),
-    destination: raw.destination ?? raw.citta ?? "",
-    origin: raw.origin ?? raw.from ?? "",
-    type: raw.type ?? raw.tipo ?? "Offerta",
-    price: Number(raw.price ?? 0),
-    currency: raw.currency ?? "EUR",
-    oldPrice: raw.oldPrice ?? null,
-    discountPercent: raw.discountPercent ?? null,
-    startDate: raw.startDate ?? null,
-    endDate: raw.endDate ?? null,
-    nights: raw.nights ?? null,
-    provider: raw.provider ?? "unknown",
-    bookingUrl: raw.bookingUrl ?? "#",
-    image: raw.image ?? null,
-    flight: raw.flight ?? null,
-    hotel: raw.hotel ?? null
-  };
+function cerca(){
+const from=document.querySelectorAll('.search input')[0]?.value.trim() || 'la tua città';
+const to=document.querySelectorAll('.search input')[1]?.value.trim() || 'la tua destinazione';
+const q=encodeURIComponent('voli '+from+' '+to);
+alert('Ricerca: '+from+' → '+to+'\n\nApertura della ricerca offerte.');
+window.open('https://www.google.com/search?q='+q,'_blank','noopener');
 }
 
-function formatPrice(price, currency="EUR") {
-  if (typeof price !== "number" || Number.isNaN(price)) return "";
-  return new Intl.NumberFormat("it-IT", {style:"currency", currency}).format(price);
+function iscriviti(){
+
+const email =
+document.getElementById("email").value.trim();
+
+if(email === ""){
+
+alert("Inserisci la tua email.");
+
+return;
+
 }
 
-async function api(path, options={}) {
-  const response = await fetch(`${API_BASE}${path}`, {
-    headers: {"Content-Type":"application/json", ...(options.headers || {})},
-    ...options
-  });
-  if (!response.ok) throw new Error(`API ${response.status}`);
-  return response.json();
+if(!email.includes("@")){
+
+alert("Inserisci un indirizzo email valido.");
+
+return;
+
 }
 
-async function cerca() {
-  const from = document.getElementById("from").value.trim();
-  const to = document.getElementById("to").value.trim();
-  const dateFrom = document.getElementById("dateFrom").value;
-  const dateTo = document.getElementById("dateTo").value;
-  const adults = Number(document.getElementById("adults").value || 2);
-  const box = document.getElementById("results");
+document.getElementById("messaggio").innerText =
+"Grazie! Il modulo funziona. Potremo collegarlo a una vera newsletter in un secondo momento.";
 
-  if (!from || !to) {
-    showResults("<strong>Completa la ricerca</strong><br><span>Inserisci città di partenza e destinazione.</span>");
-    return;
-  }
-
-  const params = new URLSearchParams({from, to, adults});
-  if (dateFrom) params.set("dateFrom", dateFrom);
-  if (dateTo) params.set("dateTo", dateTo);
-
-  if (!DEMO_MODE) {
-    try {
-      showResults("<span>Ricerca delle offerte in corso…</span>");
-      const data = await api(`/api/search?${params.toString()}`);
-      renderOffers((data.offers || []).map(normalizeOffer));
-      return;
-    } catch (error) {
-      console.error(error);
-      showResults("<strong>Servizio temporaneamente non disponibile.</strong><br><span>Riprova tra poco.</span>");
-      return;
-    }
-  }
-
-  const match = offerte.filter(o => o.citta.toLowerCase().includes(to.toLowerCase()));
-  if (match.length) {
-    showResults("<strong>Offerte demo trovate</strong>" +
-      match.map(o => `<div class="result-row">
-        <div><strong>${o.emoji} ${escapeHtml(o.citta)}</strong>
-        <span>${escapeHtml(from)} → ${escapeHtml(o.citta)} · ${o.notti} · ${adults} adulti</span></div>
-        <strong>${o.prezzo}</strong></div>`).join(""));
-  } else {
-    showResults(`<strong>Nessuna offerta demo trovata per ${escapeHtml(to)}.</strong><br>
-      <span>Prova Parigi, Barcellona o Budapest.</span>`);
-  }
 }
 
-function renderOffers(offers) {
-  if (!offers.length) {
-    showResults("<strong>Nessuna offerta trovata.</strong>");
-    return;
-  }
-  showResults("<strong>Offerte trovate</strong>" +
-    offers.map(o => `<div class="result-row">
-      <div><strong>${escapeHtml(o.destination)}</strong>
-      <span>${escapeHtml(o.origin)} → ${escapeHtml(o.destination)} · ${o.nights ?? ""}</span></div>
-      <strong>${formatPrice(o.price, o.currency)}</strong>
-      </div>`).join(""));
-}
-
-function showResults(html) {
-  const box = document.getElementById("results");
-  box.innerHTML = html;
-  box.classList.add("show");
-}
-
-async function filtra(tipo) {
-  const box = document.getElementById("results");
-  const match = offerte.filter(o => o.tipo === tipo);
-  box.innerHTML = `<strong>Categoria: ${escapeHtml(tipo)}</strong>` +
-    match.map(o => `<div class="result-row"><div><strong>${o.emoji} ${o.citta}</strong>
-      <span>${o.notti}</span></div><strong>${o.prezzo}</strong></div>`).join("");
-  box.classList.add("show");
-  document.querySelector(".hero").scrollIntoView({behavior:"smooth"});
-}
-
-async function apriOfferta(e, citta, notti, prezzo) {
-  e.preventDefault();
-  const card = e.currentTarget.closest(".card");
-  const offerId = card?.dataset.offerId || null;
-
-  document.getElementById("modalTitle").textContent = `Offerta per ${citta} ✈️`;
-  document.getElementById("modalText").textContent =
-    `Volo + soggiorno · ${notti} · prezzo demo ${prezzo}. Lascia la tua email per ricevere le prossime offerte.`;
-
-  const action = document.querySelector(".modal-action");
-  action.dataset.offerId = offerId || "";
-  action.dataset.provider = card?.dataset.provider || "unknown";
-  action.href = "#newsletter";
-
-  document.getElementById("modal").classList.add("open");
-}
-
-async function trackClick(offerId, provider, destinationUrl="#") {
-  try {
-    await api("/api/click", {
-      method: "POST",
-      body: JSON.stringify({
-        offerId, provider,
-        timestamp: new Date().toISOString(),
-        page: location.href
-      })
-    });
-  } catch (e) {
-    console.warn("Click tracking non disponibile:", e);
-  }
-  if (destinationUrl && destinationUrl !== "#") location.href = destinationUrl;
-}
-
-function chiudiModal(e) {
-  if (!e || e.target === document.getElementById("modal")) {
-    document.getElementById("modal").classList.remove("open");
-  }
-}
-
-async function iscriviti() {
-  const input = document.getElementById("email");
-  const msg = document.getElementById("messaggio");
-  const email = input.value.trim();
-
-  if (!email) { msg.textContent = "Inserisci la tua email."; return; }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    msg.textContent = "Inserisci un indirizzo email valido."; return;
-  }
-
-  try {
-    if (!DEMO_MODE) {
-      await api("/api/newsletter", {
-        method: "POST",
-        body: JSON.stringify({email, source:"website"})
-      });
-      msg.textContent = "Iscrizione completata! Controlla la tua email.";
-    } else {
-      localStorage.setItem("scappaViaEmail", email);
-      msg.textContent = "Demo: iscrizione salvata sul dispositivo.";
-    }
-    input.value = "";
-  } catch (error) {
-    console.error(error);
-    msg.textContent = "Non è stato possibile completare l'iscrizione.";
-  }
-}
-
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, m => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-  }[m]));
-}
-
-/* Production checklist available in the console for the developer. */
-console.info("Scappa Via integration layer loaded. DEMO_MODE =", DEMO_MODE);
 </script>
+
 </body>
 </html>
