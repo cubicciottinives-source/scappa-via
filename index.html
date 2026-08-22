@@ -607,11 +607,10 @@ Trova l'offerta. Prepara la valigia. Parti.
 <script>
 
 function cerca(){
-const from=document.querySelectorAll('.search input')[0]?.value.trim() || 'la tua città';
-const to=document.querySelectorAll('.search input')[1]?.value.trim() || 'la tua destinazione';
-const q=encodeURIComponent('voli '+from+' '+to);
-alert('Ricerca: '+from+' → '+to+'\n\nApertura della ricerca offerte.');
-window.open('https://www.google.com/search?q='+q,'_blank','noopener');
+const from=document.querySelectorAll('.search input')[0]?.value.trim() || '';
+const to=document.querySelectorAll('.search input')[1]?.value.trim() || '';
+
+window.open('https://klook.tp.st/kAKwZeaP','_blank','noopener');
 }
 
 function iscriviti(){
