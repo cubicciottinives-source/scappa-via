@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Scappa Via | Viaggi, offerte e vacanze</title>
+<meta name="description" content="Scappa Via: scopri offerte di viaggio, weekend, vacanze e destinazioni da sogno.">
+
+<style>
+:root{
+    --pink:#e889a7;
+    --pink-dark:#c85f83;
+    --pink-light:#fdf0f5;
+    --rose:#f7dce7;
+    --white:#ffffff;
+    --text:#382a31;
+    --muted:#806f77;
+    --dark:#281d24;
+    --border:#f0dce4;
+    --shadow:0 18px 50px rgba(100,45,70,.10);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    color:var(--text);
+    background:#fffafb;
+    line-height:1.5;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+a{
+    color:inherit;
+}
+
+/* HEADER */
+
+header{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:20;
+    padding:22px 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+}
+
+.logo img{
+    width:175px;
+    height:auto;
+    object-fit:contain;
+}
+
+nav{
+    display:flex;
+    align-items:center;
+    gap:28px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-size:15px;
+    font-weight:700;
+    transition:.2s;
+}
+
+nav a:hover{
+    opacity:.75;
+}
+
+.nav-button{
+    background:white;
+    color:var(--pink-dark)!important;
+    padding:12px 20px;
+    border-radius:30px;
+}
+
+/* HERO */
+
+.hero{
+    min-height:760px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+
+    background:
+    linear-gradient(
+        rgba(65,20,40,.30),
+        rgba(65,20,40,.55)
+    ),
+    url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2200&q=85")
+    center/cover no-repeat;
+}
+
+.hero-content{
+    width:min(1100px,92%);
+    margin-top:80px;
+}
+
+.hero-kicker{
+    display:inline-block;
+    background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.35);
+    backdrop-filter:blur(8px);
+    padding:8px 16px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:22px;
+}
+
+.hero h1{
+    font-size:clamp(48px,7vw,82px);
+    line-height:1;
+    letter-spacing:-3px;
+    margin-bottom:22px;
+}
+
+.hero p{
+    max-width:680px;
+    margin:0 auto 38px;
+    font-size:20px;
+    color:#fff;
+}
+
+/* SEARCH */
+
+.search-box{
+    width:min(1050px,100%);
+    margin:auto;
+    background:white;
+    padding:10px;
+    border-radius:20px;
+    display:grid;
+    grid-template-columns:1fr 1fr 190px 150px;
+    gap:10px;
+    box-shadow:0 20px 60px rgba(40,10,25,.25);
+    text-align:left;
+}
+
+.search-field{
+    padding:10px 14px;
+}
+
+.search-field label{
+    display:block;
+    color:#917d85;
+    font-size:11px;
+    font-weight:800;
+    text-transform:uppercase;
+    margin-bottom:5px;
+}
+
+.search-field input,
+.search-field select{
+    width:100%;
+    border:0;
+    outline:none;
+    color:var(--text);
+    font-size:15px;
+    background:white;
+}
+
+.search-button{
+    border:0;
+    border-radius:14px;
+    background:var(--pink-dark);
+    color:white;
+    font-weight:800;
+    cursor:pointer;
+    font-size:15px;
+    transition:.2s;
+}
+
+.search-button:hover{
+    background:#ad4d6e;
+    transform:translateY(-1px);
+}
+
+/* GENERAL */
+
+.container{
+    width:min(1200px,92%);
+    margin:auto;
+}
+
+.section{
+    padding:90px 0;
+}
+
+.section-soft{
+    background:var(--pink-light);
+}
+
+.section-heading{
+    margin-bottom:42px;
+}
+
+.section-heading.center{
+    text-align:center;
+}
+
+.eyebrow{
+    color:var(--pink-dark);
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    margin-bottom:8px;
+}
+
+.section-heading h2{
+    font-size:clamp(32px,4vw,48px);
+    line-height:1.1;
+    margin-bottom:10px;
+}
+
+.section-heading p{
+    color:var(--muted);
+}
+
+/* DEAL */
+
+.deal{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:28px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+}
+
+.deal-image{
+    min-height:440px;
+    background:
+    linear-gradient(90deg,rgba(0,0,0,.05),rgba(0,0,0,.05)),
+    url("https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1400&q=85")
+    center/cover;
+}
+
+.deal-content{
+    padding:48px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.badge{
+    display:inline-block;
+    align-self:flex-start;
+    padding:7px 12px;
+    border-radius:30px;
+    background:#fce4ec;
+    color:var(--pink-dark);
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:16px;
+}
+
+.deal-content h3{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+.deal-info{
+    color:var(--muted);
+    margin-bottom:20px;
+}
+
+.deal-price{
+    margin-bottom:25px;
+}
+
+.old-price{
+    color:#aaa;
+    text-decoration:line-through;
+    margin-right:10px;
+}
+
+.current-price{
+    color:var(--pink-dark);
+    font-size:36px;
+    font-weight:900;
+}
+
+.primary-button{
+    display:inline-block;
+    width:max-content;
+    padding:14px 25px;
+    border-radius:12px;
+    background:var(--dark);
+    color:white;
+    text-decoration:none;
+    font-weight:800;
+    transition:.2s;
+}
+
+.primary-button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+/* OFFERS */
+
+.offers{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.offer-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    transition:.25s;
+}
+
+.offer-card:hover{
+    transform:translateY(-6px);
+}
+
+.offer-image{
+    height:230px;
+    position:relative;
+    background-size:cover;
+    background-position:center;
+}
+
+.offer-card:nth-child(1) .offer-image{
+    background-image:url("https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1000&q=80");
+}
+
+.offer-card:nth-child(2) .offer-image{
+    background-image:url("https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1000&q=80");
+}
+
+.offer-card:nth-child(3) .offer-image{
+    background-image:url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=80");
+}
+
+.offer-badge{
+    position:absolute;
+    top:15px;
+    left:15px;
+    background:white;
+    color:var(--pink-dark);
+    padding:7px 11px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:900;
+}
+
+.offer-body{
+    padding:24px;
+}
+
+.offer-body h3{
+    font-size:27px;
+    margin-bottom:6px;
+}
+
+.offer-details{
+    color:var(--muted);
+    font-size:14px;
+}
+
+.offer-price{
+    margin:18px 0;
+}
+
+.offer-price .old-price{
+    font-size:14px;
+}
+
+.offer-price strong{
+    color:var(--pink-dark);
+    font-size:28px;
+}
+
+.offer-button{
+    display:block;
+    text-align:center;
+    background:var(--pink);
+    color:white;
+    text-decoration:none;
+    padding:13px;
+    border-radius:11px;
+    font-weight:800;
+}
+
+.offer-button:hover{
+    background:var(--pink-dark);
+}
+
+/* DESTINATIONS */
+
+.destinations{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.destination{
+    min-height:300px;
+    border-radius:22px;
+    overflow:hidden;
+    position:relative;
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:flex-end;
+    padding:20px;
+    color:white;
+}
+
+.destination::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(transparent 30%,rgba(0,0,0,.65));
+}
+
+.destination-content{
+    position:relative;
+    z-index:2;
+}
+
+.destination h3{
+    font-size:25px;
+}
+
+.destination p{
+    font-size:13px;
+    opacity:.9;
+}
+
+.destination:nth-child(1){
+    background-image:url("https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=800&q=80");
+}
+
+.destination:nth-child(2){
+    background-image:url("https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80");
+}
+
+.destination:nth-child(3){
+    background-image:url("https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=800&q=80");
+}
+
+.destination:nth-child(4){
+    background-image:url("https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=800&q=80");
+}
+
+/* BENEFITS */
+
+.benefits{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.benefit{
+    text-align:center;
+    padding:30px 20px;
+    background:white;
+    border-radius:20px;
+    border:1px solid var(--border);
+}
+
+.benefit-icon{
+    width:60px;
+    height:60px;
+    margin:0 auto 16px;
+    border-radius:50%;
+    background:var(--pink-light);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:27px;
+}
+
+.benefit h3{
+    margin-bottom:7px;
+}
+
+.benefit p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+/* STATS */
+
+.stats{
+    background:var(--dark);
+    color:white;
+    border-radius:28px;
+    padding:55px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    text-align:center;
+    gap:25px;
+}
+
+.stat strong{
+    display:block;
+    color:#f6b4c9;
+    font-size:38px;
+}
+
+.stat span{
+    color:#d5c9ce;
+    font-size:14px;
+}
+
+/* REVIEWS */
+
+.reviews{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.review{
+    background:white;
+    border:1px solid var(--border);
+    padding:28px;
+    border-radius:20px;
+    box-shadow:var(--shadow);
+}
+
+.stars{
+    color:#e3a142;
+    margin-bottom:15px;
+}
+
+.review p{
+    color:#62545a;
+    margin-bottom:18px;
+}
+
+.reviewer{
+    font-weight:800;
+}
+
+.reviewer small{
+    display:block;
+    color:#9b8991;
+    margin-top:3px;
+}
+
+/* NEWSLETTER */
+
+.newsletter{
+    padding:90px 20px;
+    background:
+    linear-gradient(135deg,rgba(200,95,131,.92),rgba(238,157,183,.94));
+    color:white;
+    text-align:center;
+}
+
+.newsletter-inner{
+    width:min(760px,92%);
+    margin:auto;
+}
+
+.newsletter h2{
+    font-size:clamp(32px,5vw,50px);
+    margin-bottom:12px;
+}
+
+.newsletter p{
+    color:#fff5f8;
+    margin-bottom:28px;
+}
+
+.newsletter-form{
+    display:flex;
+    max-width:580px;
+    margin:auto;
+    background:white;
+    padding:7px;
+    border-radius:14px;
+}
+
+.newsletter-form input{
+    flex:1;
+    border:0;
+    outline:0;
+    padding:14px;
+    font-size:15px;
+    border-radius:10px;
+}
+
+.newsletter-form button{
+    border:0;
+    background:var(--dark);
+    color:white;
+    padding:0 22px;
+    border-radius:10px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+/* FOOTER */
+
+footer{
+    background:#211820;
+    color:white;
+    padding:60px 0 25px;
+}
+
+.footer-grid{
+    width:min(1200px,92%);
+    margin:auto;
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr 1fr;
+    gap:40px;
+}
+
+.footer-brand img{
+    width:170px;
+    margin-bottom:15px;
+    filter:brightness(0) invert(1);
+}
+
+.footer-brand p{
+    color:#c9bec3;
+    max-width:320px;
+}
+
+.footer-column h4{
+    margin-bottom:15px;
+}
+
+.footer-column a{
+    display:block;
+    color:#c9bec3;
+    text-decoration:none;
+    margin:8px 0;
+    font-size:14px;
+}
+
+.footer-column a:hover{
+    color:white;
+}
+
+.footer-bottom{
+    width:min(1200px,92%);
+    margin:45px auto 0;
+    padding-top:20px;
+    border-top:1px solid rgba(255,255,255,.1);
+    color:#9e9298;
+    font-size:13px;
+    display:flex;
+    justify-content:space-between;
+}
+
+/* MOBILE MENU */
+
+.mobile-menu{
+    display:none;
+    border:0;
+    background:rgba(255,255,255,.15);
+    color:white;
+    font-size:25px;
+    width:44px;
+    height:44px;
+    border-radius:10px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:950px){
+
+    nav{
+        display:none;
+    }
+
+    .mobile-menu{
+        display:block;
+    }
+
+    .search-box{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .search-button{
+        min-height:55px;
+    }
+
+    .deal{
+        grid-template-columns:1fr;
+    }
+
+    .deal-image{
+        min-height:330px;
+    }
+
+    .offers,
+    .reviews{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .destinations{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .benefits{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    header{
+        padding:18px 5%;
+    }
+
+    .logo img{
+        width:145px;
+    }
+
+    .hero{
+        min-height:780px;
+        padding-top:130px;
+    }
+
+    .hero h1{
+        letter-spacing:-2px;
+    }
+
+    .hero p{
+        font-size:17px;
+    }
+
+    .search-box{
+        grid-template-columns:1fr;
+    }
+
+    .section{
+        padding:65px 0;
+    }
+
+    .offers,
+    .reviews,
+    .destinations,
+    .benefits,
+    .stats,
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+
+    .deal-content{
+        padding:30px;
+    }
+
+    .deal-content h3{
+        font-size:34px;
+    }
+
+    .newsletter-form{
+        flex-direction:column;
+        gap:7px;
+        background:transparent;
+    }
+
+    .newsletter-form input{
+        width:100%;
+    }
+
+    .newsletter-form button{
+        height:50px;
+    }
+
+    .footer-bottom{
+        flex-direction:column;
+        gap:10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <a href="index.html" class="logo">
+        <img src="assets/logo/scappa-via-logo.png" alt="Scappa Via">
+    </a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#offerte">Offerte</a>
+        <a href="#destinazioni">Destinazioni</a>
+        <a href="#perche">Perché noi</a>
+        <a href="#recensioni">Recensioni</a>
+        <a href="#newsletter">Newsletter</a>
+        <a href="#offerte" class="nav-button">Prenota</a>
+    </nav>
+
+    <button class="mobile-menu" aria-label="Apri menu">☰</button>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <span class="hero-kicker">
+            ✈️ VIAGGI • OFFERTE • EMOZIONI
+        </span>
+
+        <h1>
+            Dove vuoi<br>
+            scappare?
+        </h1>
+
+        <p>
+            Trova il viaggio che stavi aspettando.
+            Offerte selezionate, destinazioni da sogno
+            e occasioni da non perdere.
+        </p>
+
+        <div class="search-box">
+
+            <div class="search-field">
+                <label>Partenza</label>
+                <input id="searchFrom" type="text" placeholder="Es. Roma">
+            </div>
+
+            <div class="search-field">
+                <label>Destinazione</label>
+                <input id="searchTo" type="text" placeholder="Es. Maldive">
+            </div>
+
+            <div class="search-field">
+                <label>Quando?</label>
+                <input id="searchDate" type="date">
+            </div>
+
+            <button class="search-button" onclick="cercaOfferta()">
+                CERCA VIAGGIO
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DEAL DEL GIORNO -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <div class="eyebrow">Da non perdere</div>
+            <h2>🔥 Deal del giorno</h2>
+            <p>
+                Una proposta speciale selezionata per la tua prossima fuga.
+            </p>
+        </div>
+
+        <div class="deal">
+
+            <div class="deal-image"></div>
+
+            <div class="deal-content">
+
+                <span class="badge">OFFERTA SPECIALE</span>
+
+                <h3>Maldive</h3>
+
+                <p class="deal-info">
+                    ✈️ Volo + soggiorno · 7 notti · 2 persone
+                </p>
+
+                <p>
+                    Acque cristalline, spiagge bianche e tutto il tempo
+                    che ti serve per staccare davvero.
+                </p>
+
+                <div class="deal-price">
+                    <span class="old-price">€2.199</span>
+                    <span class="current-price">€1.699</span>
+                </div>
+
+                <a href="prenotazione.html?offerta=maldive" class="primary-button">
+                    PRENOTA ORA →
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- OFFERTE -->
+
+<section class="section section-soft" id="offerte">
+
+    <div class="container">
+
+        <div class="section-heading center">
+
+            <div class="eyebrow">Le nostre proposte</div>
+
+            <h2>Offerte in evidenza</h2>
+
+            <p>
+                Scegli la tua prossima destinazione.
+            </p>
+
+        </div>
+
+
+        <div class="offers">
+
+
+            <article class="offer-card">
+
+                <div class="offer-image">
+                    <span class="offer-badge">WEEKEND</span>
+                </div>
+
+                <div class="offer-body">
+
+                    <h3>Parigi</h3>
+
+                    <p class="offer-details">
+                        ✈️ Volo + soggiorno · 3 notti
+                    </p>
+
+                    <div class="offer-price">
+                        <span class="old-price">€220</span>
+                        <strong>€149</strong>
+                    </div>
+
+                    <a
+                        href="prenotazione.html?offerta=parigi"
+                        class="offer-button"
+                    >
+                        PRENOTA
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="offer-card">
+
+                <div class="offer-image">
+                    <span class="offer-badge">LAST MINUTE</span>
+                </div>
+
+                <div class="offer-body">
+
+                    <h3>Barcellona</h3>
+
+                    <p class="offer-details">
+                        ✈️ Volo + soggiorno · 3 notti
+                    </p>
+
+                    <div class="offer-price">
+                        <span class="old-price">€210</span>
+                        <strong>€129</strong>
+                    </div>
+
+                    <a
+                        href="prenotazione.html?offerta=barcellona"
+                        class="offer-button"
+                    >
+                        PRENOTA
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <article class="offer-card">
+
+                <div class="offer-image">
+                    <span class="offer-badge">LOW COST</span>
+                </div>
+
+                <div class="offer-body">
+
+                    <h3>Budapest</h3>
+
+                    <p class="offer-details">
+                        ✈️ Volo + soggiorno · 2 notti
+                    </p>
+
+                    <div class="offer-price">
+                        <span class="old-price">€170</span>
+                        <strong>€99</strong>
+                    </div>
+
+                    <a
+                        href="prenotazione.html?offerta=budapest"
+                        class="offer-button"
+                    >
+                        PRENOTA
+                    </a>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DESTINAZIONI -->
+
+<section class="section" id="destinazioni">
+
+    <div class="container">
+
+        <div class="section-heading center">
+
+            <div class="eyebrow">Ispirazione</div>
+
+            <h2>Destinazioni popolari</h2>
+
+            <p>
+                Quattro idee per iniziare a sognare.
+            </p>
+
+        </div>
+
+
+        <div class="destinations">
+
+            <a href="#offerte" class="destination">
+                <div class="destination-content">
+                    <h3>Grecia</h3>
+                    <p>Mare, isole e tramonti</p>
+                </div>
+            </a>
+
+            <a href="#offerte" class="destination">
+                <div class="destination-content">
+                    <h3>Bali</h3>
+                    <p>Natura e relax</p>
+                </div>
+            </a>
+
+            <a href="#offerte" class="destination">
+                <div class="destination-content">
+                    <h3>Australia</h3>
+                    <p>Un mondo da scoprire</p>
+                </div>
+            </a>
+
+            <a href="#offerte" class="destination">
+                <div class="destination-content">
+                    <h3>Venezia</h3>
+                    <p>Una fuga romantica</p>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PERCHÉ SCAPPA VIA -->
+
+<section class="section section-soft" id="perche">
+
+    <div class="container">
+
+        <div class="section-heading center">
+
+            <div class="eyebrow">Perché sceglierci</div>
+
+            <h2>Tu pensa alla valigia.</h2>
+
+            <p>
+                Al resto pensiamo noi.
+            </p>
+
+        </div>
+
+
+        <div class="benefits">
+
+            <div class="benefit">
+
+                <div class="benefit-icon">💎</div>
+
+                <h3>Offerte selezionate</h3>
+
+                <p>
+                    Cerchiamo occasioni interessanti
+                    per aiutarti a viaggiare meglio.
+                </p>
+
+            </div>
+
+
+            <div class="benefit">
+
+                <div class="benefit-icon">⚡</div>
+
+                <h3>Prenotazione semplice</h3>
+
+                <p>
+                    Un'esperienza chiara e veloce
+                    direttamente dal sito.
+                </p>
+
+            </div>
+
+
+            <div class="benefit">
+
+                <div class="benefit-icon">🔒</div>
+
+                <h3>Pagamento sicuro</h3>
+
+                <p>
+                    Checkout protetto e metodi
+                    di pagamento moderni.
+                </p>
+
+            </div>
+
+
+            <div class="benefit">
+
+                <div class="benefit-icon">💗</div>
+
+                <h3>Viaggi da ricordare</h3>
+
+                <p>
+                    Perché partire dovrebbe essere
+                    sempre un'emozione.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div style="height:30px"></div>
+
+
+        <div class="stats">
+
+            <div class="stat">
+                <strong>200+</strong>
+                <span>destinazioni</span>
+            </div>
+
+            <div class="stat">
+                <strong>1.000+</strong>
+                <span>viaggiatori</span>
+            </div>
+
+            <div class="stat">
+                <strong>24/7</strong>
+                <span>ispirazione</span>
+            </div>
+
+            <div class="stat">
+                <strong>4.9/5</strong>
+                <span>esperienza</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- RECENSIONI -->
+
+<section class="section" id="recensioni">
+
+    <div class="container">
+
+        <div class="section-heading center">
+
+            <div class="eyebrow">Parlano di noi</div>
+
+            <h2>Chi è partito con noi</h2>
+
+            <p>
+                Le esperienze dei nostri viaggiatori.
+            </p>
+
+        </div>
+
+
+        <div class="reviews">
+
+            <article class="review">
+
+                <div class="stars">★★★★★</div>
+
+                <p>
+                    “Abbiamo trovato un'offerta fantastica
+                    e organizzare il viaggio è stato semplicissimo.”
+                </p>
+
+                <div class="reviewer">
+                    Giulia R.
+                    <small>Milano</small>
+                </div>
+
+            </article>
+
+
+            <article class="review">
+
+                <div class="stars">★★★★★</div>
+
+                <p>
+                    “Il weekend che cercavamo da mesi.
+                    Prezzo ottimo e destinazione bellissima.”
+                </p>
+
+                <div class="reviewer">
+                    Marco D.
+                    <small>Roma</small>
+                </div>
+
+            </article>
+
+
+            <article class="review">
+
+                <div class="stars">★★★★★</div>
+
+                <p>
+                    “Finalmente un modo semplice per trovare
+                    offerte senza passare ore a cercare.”
+                </p>
+
+                <div class="reviewer">
+                    Sara L.
+                    <small>Napoli</small>
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- NEWSLETTER -->
+
+<section class="newsletter" id="newsletter">
+
+    <div class="newsletter-inner">
+
+        <h2>
+            Le occasioni migliori arrivano prima qui.
+        </h2>
+
+        <p>
+            Iscriviti alla newsletter di SCAPPA VIA
+            e lasciati sorprendere dalla prossima destinazione.
+        </p>
+
+        <form class="newsletter-form" onsubmit="iscriviti(event)">
+
+            <input
+                id="email"
+                type="email"
+                placeholder="La tua email"
+                required
+            >
+
+            <button type="submit">
+                ISCRIVITI
+            </button>
+
+        </form>
+
+        <p id="messaggio" style="margin-top:15px;"></p>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-grid">
+
+        <div class="footer-brand">
+
+            <img
+                src="assets/logo/scappa-via-logo.png"
+                alt="Scappa Via"
+            >
+
+            <p>
+                Trova l'offerta. Prepara la valigia.
+                Parti.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Scappa Via</h4>
+
+            <a href="index.html">Home</a>
+            <a href="#offerte">Offerte</a>
+            <a href="#destinazioni">Destinazioni</a>
+            <a href="#perche">Perché noi</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Assistenza</h4>
+
+            <a href="#">Contatti</a>
+            <a href="#">FAQ</a>
+            <a href="#">Termini e condizioni</a>
+            <a href="#">Privacy Policy</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Seguici</h4>
+
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">TikTok</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 Scappa Via. Tutti i diritti riservati.
+        </span>
+
+        <span>
+            Viaggi che lasciano il segno.
+        </span>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+function cercaOfferta(){
+
+    const from =
+        document.getElementById("searchFrom").value.trim();
+
+    const to =
+        document.getElementById("searchTo").value.trim();
+
+    const date =
+        document.getElementById("searchDate").value;
+
+    if(!from && !to){
+
+        alert("Inserisci almeno una partenza o una destinazione.");
+
+        return;
+    }
+
+    /*
+        FUTURO:
+        qui collegheremo la ricerca a Supabase.
+
+        Per ora portiamo l'utente
+        alla sezione delle offerte.
+    */
+
+    document
+        .getElementById("offerte")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+}
+
+
+function iscriviti(event){
+
+    event.preventDefault();
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const messaggio =
+        document.getElementById("messaggio");
+
+    if(!email || !email.includes("@")){
+
+        messaggio.innerText =
+            "Inserisci un indirizzo email valido.";
+
+        return;
+    }
+
+    /*
+        FUTURO:
+        collegheremo questo modulo
+        a Supabase / servizio newsletter.
+    */
+
+    messaggio.innerText =
+        "Grazie! Ti abbiamo inserito nella lista.";
+
+    document.getElementById("email").value = "";
+
+}
+
+</script>
+
+</body>
+</html>
