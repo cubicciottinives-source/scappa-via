@@ -3,10 +3,7 @@
 <head>
 <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Prenotazione | SCAPPA VIA</title>
 
@@ -56,7 +53,6 @@ img{
     max-width:100%;
     display:block;
 }
-
 
 /* HEADER */
 
@@ -110,7 +106,6 @@ nav a:hover{
     font-size:23px;
 }
 
-
 /* PAGE */
 
 .page{
@@ -159,7 +154,6 @@ nav a:hover{
     color:var(--muted);
 }
 
-
 /* LAYOUT */
 
 .booking-layout{
@@ -168,7 +162,6 @@ nav a:hover{
     gap:30px;
     align-items:start;
 }
-
 
 /* FORM */
 
@@ -190,7 +183,6 @@ nav a:hover{
     font-size:14px;
     margin-bottom:28px;
 }
-
 
 /* STEPS */
 
@@ -234,7 +226,6 @@ nav a:hover{
     flex:1;
     background:var(--border);
 }
-
 
 /* FORM SECTIONS */
 
@@ -305,7 +296,6 @@ nav a:hover{
     margin-top:5px;
 }
 
-
 /* TRAVELERS */
 
 .traveler{
@@ -336,7 +326,6 @@ nav a:hover{
     font-weight:800;
 }
 
-
 /* CHECKBOX */
 
 .checkbox{
@@ -356,7 +345,6 @@ nav a:hover{
 .checkbox a{
     color:var(--pink-dark);
 }
-
 
 /* CONTINUE */
 
@@ -379,13 +367,18 @@ nav a:hover{
     transform:translateY(-2px);
 }
 
+.continue-button:disabled{
+    opacity:.65;
+    cursor:not-allowed;
+    transform:none;
+}
+
 .secure-note{
     text-align:center;
     color:var(--muted);
     font-size:12px;
     margin-top:13px;
 }
-
 
 /* SUMMARY */
 
@@ -469,8 +462,7 @@ nav a:hover{
     font-size:31px;
 }
 
-
-/* PAYMENT PREVIEW */
+/* PAYMENT */
 
 .payment-preview{
     margin-top:18px;
@@ -505,8 +497,7 @@ nav a:hover{
     margin-top:10px;
 }
 
-
-/* ALERT */
+/* MESSAGE */
 
 .form-message{
     display:none;
@@ -523,6 +514,10 @@ nav a:hover{
     display:block;
 }
 
+.form-message.success{
+    background:#eaf7f0;
+    color:#287552;
+}
 
 /* FOOTER */
 
@@ -578,7 +573,6 @@ footer{
     justify-content:space-between;
 }
 
-
 /* RESPONSIVE */
 
 @media(max-width:950px){
@@ -608,7 +602,6 @@ footer{
         grid-template-columns:1fr 1fr;
     }
 }
-
 
 @media(max-width:600px){
 
@@ -665,23 +658,16 @@ footer{
 </style>
 </head>
 
-
 <body>
-
-
-<!-- HEADER -->
 
 <header>
 
     <a href="index.html" class="logo">
-
         <img
             src="assets/logo/scappa-via-logo.png"
             alt="SCAPPA VIA"
         >
-
     </a>
-
 
     <nav>
 
@@ -710,7 +696,6 @@ footer{
 
     </nav>
 
-
     <button
         class="mobile-menu"
         aria-label="Menu"
@@ -720,16 +705,9 @@ footer{
 
 </header>
 
-
-
-<!-- PAGE -->
-
 <main class="page">
 
 <div class="container">
-
-
-    <!-- BREADCRUMB -->
 
     <div class="breadcrumb">
 
@@ -749,10 +727,6 @@ footer{
 
     </div>
 
-
-
-    <!-- TITLE -->
-
     <div class="page-title">
 
         <div class="eyebrow">
@@ -770,63 +744,32 @@ footer{
 
     </div>
 
-
-
-    <!-- LAYOUT -->
-
     <div class="booking-layout">
 
-
-        <!-- FORM -->
-
         <section class="booking-card">
-
-
-            <!-- STEPS -->
 
             <div class="steps">
 
                 <div class="step active">
-
-                    <div class="step-number">
-                        1
-                    </div>
-
+                    <div class="step-number">1</div>
                     Dati
-
                 </div>
-
 
                 <div class="step-line"></div>
 
-
                 <div class="step">
-
-                    <div class="step-number">
-                        2
-                    </div>
-
+                    <div class="step-number">2</div>
                     Pagamento
-
                 </div>
-
 
                 <div class="step-line"></div>
 
-
                 <div class="step">
-
-                    <div class="step-number">
-                        3
-                    </div>
-
+                    <div class="step-number">3</div>
                     Conferma
-
                 </div>
 
             </div>
-
-
 
             <h2>
                 Dati del viaggiatore
@@ -837,21 +780,15 @@ footer{
                 la prenotazione.
             </p>
 
-
             <div
                 id="formMessage"
                 class="form-message"
             ></div>
 
-
-
             <form
                 id="bookingForm"
                 novalidate
             >
-
-
-                <!-- CONTATTI -->
 
                 <div class="form-section">
 
@@ -859,9 +796,7 @@ footer{
                         👤 Informazioni personali
                     </h3>
 
-
                     <div class="form-grid">
-
 
                         <div class="form-group">
 
@@ -880,7 +815,6 @@ footer{
 
                         </div>
 
-
                         <div class="form-group">
 
                             <label for="lastName">
@@ -897,7 +831,6 @@ footer{
                             >
 
                         </div>
-
 
                         <div class="form-group">
 
@@ -921,7 +854,6 @@ footer{
 
                         </div>
 
-
                         <div class="form-group">
 
                             <label for="phone">
@@ -943,19 +875,13 @@ footer{
 
                 </div>
 
-
-
-                <!-- VIAGGIO -->
-
                 <div class="form-section">
 
                     <h3>
                         ✈️ Dettagli del viaggio
                     </h3>
 
-
                     <div class="form-grid">
-
 
                         <div class="form-group">
 
@@ -973,7 +899,6 @@ footer{
 
                         </div>
 
-
                         <div class="form-group">
 
                             <label for="destination">
@@ -990,7 +915,6 @@ footer{
 
                         </div>
 
-
                         <div class="form-group">
 
                             <label for="startDate">
@@ -1006,7 +930,6 @@ footer{
 
                         </div>
 
-
                         <div class="form-group">
 
                             <label for="endDate">
@@ -1021,7 +944,6 @@ footer{
                             >
 
                         </div>
-
 
                         <div class="form-group">
 
@@ -1066,7 +988,6 @@ footer{
 
                         </div>
 
-
                         <div class="form-group">
 
                             <label for="children">
@@ -1102,16 +1023,11 @@ footer{
 
                 </div>
 
-
-
-                <!-- VIAGGIATORI -->
-
                 <div class="form-section">
 
                     <h3>
                         🧳 Dati dei viaggiatori
                     </h3>
-
 
                     <div class="traveler">
 
@@ -1127,9 +1043,7 @@ footer{
 
                         </div>
 
-
                         <div class="form-grid">
-
 
                             <div class="form-group">
 
@@ -1145,7 +1059,6 @@ footer{
                                 >
 
                             </div>
-
 
                             <div class="form-group">
 
@@ -1168,16 +1081,11 @@ footer{
 
                 </div>
 
-
-
-                <!-- RICHIESTE -->
-
                 <div class="form-section">
 
                     <h3>
                         💬 Richieste speciali
                     </h3>
-
 
                     <div class="form-group">
 
@@ -1194,10 +1102,6 @@ footer{
                     </div>
 
                 </div>
-
-
-
-                <!-- PRIVACY -->
 
                 <div class="checkbox">
 
@@ -1223,7 +1127,6 @@ footer{
 
                 </div>
 
-
                 <div class="checkbox">
 
                     <input
@@ -1240,58 +1143,41 @@ footer{
 
                 </div>
 
-
-
-                <!-- BUTTON -->
-
                 <button
                     type="submit"
                     class="continue-button"
+                    id="continueButton"
                 >
                     CONTINUA AL PAGAMENTO →
                 </button>
 
-
                 <div class="secure-note">
-
-                    🔒 I tuoi dati saranno trattati in modo sicuro.
-
+                    🔒 Il pagamento sarà gestito tramite Stripe.
                 </div>
 
             </form>
 
         </section>
 
-
-
-        <!-- SUMMARY -->
-
         <aside class="summary">
-
 
             <div class="summary-card">
 
-
                 <div class="summary-image"></div>
 
-
                 <div class="summary-content">
-
 
                     <span class="summary-badge">
                         OFFERTA SPECIALE
                     </span>
 
-
                     <h2 id="summaryDestination">
                         Parigi
                     </h2>
 
-
                     <div class="summary-location">
                         🇫🇷 Weekend · Volo + soggiorno
                     </div>
-
 
                     <div class="summary-row">
 
@@ -1305,7 +1191,6 @@ footer{
 
                     </div>
 
-
                     <div class="summary-row">
 
                         <span>
@@ -1317,7 +1202,6 @@ footer{
                         </strong>
 
                     </div>
-
 
                     <div class="summary-row">
 
@@ -1331,11 +1215,10 @@ footer{
 
                     </div>
 
-
                     <div class="total">
 
                         <span>
-                            Totale indicativo
+                            Totale
                         </span>
 
                         <strong id="summaryTotal">
@@ -1344,13 +1227,11 @@ footer{
 
                     </div>
 
-
                     <div class="payment-preview">
 
                         <h3>
-                            Pagamento disponibile prossimamente
+                            Pagamento sicuro
                         </h3>
-
 
                         <div class="payment-methods">
 
@@ -1372,11 +1253,10 @@ footer{
 
                         </div>
 
-
                         <div class="payment-note">
 
-                            Il checkout definitivo verrà collegato
-                            al sistema di pagamento sicuro.
+                            Il pagamento verrà effettuato
+                            nella pagina sicura di Stripe.
 
                         </div>
 
@@ -1394,14 +1274,9 @@ footer{
 
 </main>
 
-
-
-<!-- FOOTER -->
-
 <footer>
 
     <div class="footer-grid">
-
 
         <div class="footer-brand">
 
@@ -1416,7 +1291,6 @@ footer{
             </p>
 
         </div>
-
 
         <div class="footer-column">
 
@@ -1437,7 +1311,6 @@ footer{
             </a>
 
         </div>
-
 
         <div class="footer-column">
 
@@ -1463,7 +1336,6 @@ footer{
 
         </div>
 
-
         <div class="footer-column">
 
             <h4>
@@ -1486,7 +1358,6 @@ footer{
 
     </div>
 
-
     <div class="footer-bottom">
 
         <span>
@@ -1501,16 +1372,15 @@ footer{
 
 </footer>
 
-
-
 <script>
 
-/*
-    CONFIGURAZIONE DELLE OFFERTE
+/* =========================================================
+   CONFIGURAZIONE
+========================================================= */
 
-    Per ora i dati sono locali.
-    Successivamente li sposteremo nel database.
-*/
+const API_URL =
+    "https://scappa-via.vercel.app/api/create-checkout-session";
+
 
 const offerte = {
 
@@ -1537,12 +1407,14 @@ const offerte = {
 };
 
 
-/*
-    LEGGE L'OFFERTA DALL'URL
-*/
+/* =========================================================
+   OFFERTA DALL'URL
+========================================================= */
 
 const params =
-    new URLSearchParams(window.location.search);
+    new URLSearchParams(
+        window.location.search
+    );
 
 const offerta =
     params.get("offerta") || "parigi";
@@ -1551,116 +1423,259 @@ const selected =
     offerte[offerta] || offerte.parigi;
 
 
-/*
-    AGGIORNA IL RIEPILOGO
-*/
+/* =========================================================
+   ELEMENTI
+========================================================= */
 
-document.getElementById(
-    "summaryDestination"
-).textContent =
+const destination =
+    document.getElementById(
+        "destination"
+    );
+
+const summaryDestination =
+    document.getElementById(
+        "summaryDestination"
+    );
+
+const summaryPrice =
+    document.getElementById(
+        "summaryPrice"
+    );
+
+const summaryTotal =
+    document.getElementById(
+        "summaryTotal"
+    );
+
+const summaryGuests =
+    document.getElementById(
+        "summaryGuests"
+    );
+
+const adults =
+    document.getElementById(
+        "adults"
+    );
+
+const children =
+    document.getElementById(
+        "children"
+    );
+
+const form =
+    document.getElementById(
+        "bookingForm"
+    );
+
+const message =
+    document.getElementById(
+        "formMessage"
+    );
+
+const button =
+    document.getElementById(
+        "continueButton"
+    );
+
+
+/* =========================================================
+   RIEPILOGO
+========================================================= */
+
+summaryDestination.textContent =
     selected.destination;
 
-document.getElementById(
-    "summaryPrice"
-).textContent =
+summaryPrice.textContent =
     "€" + selected.price;
 
-
-/*
-    AGGIORNA DESTINAZIONE
-*/
-
-document.getElementById(
-    "destination"
-).value =
+destination.value =
     selected.destination;
 
-
-/*
-    AGGIORNA IL TOTALE
-*/
 
 function aggiornaTotale(){
 
-    const adults =
-        Number(
-            document.getElementById("adults").value
-        ) || 1;
+    const adultCount =
+        Number(adults.value) || 1;
 
     const total =
-        selected.price * adults;
+        selected.price * adultCount;
 
-    document.getElementById(
-        "summaryGuests"
-    ).textContent =
-        adults +
-        (adults === 1 ? " adulto" : " adulti");
+    summaryGuests.textContent =
+        adultCount === 1
+            ? "1 adulto"
+            : adultCount + " adulti";
 
-    document.getElementById(
-        "summaryTotal"
-    ).textContent =
+    summaryTotal.textContent =
         "€" + total;
 
 }
 
 
-/*
-    ASCOLTA CAMBIO ADULTI
-*/
-
-document.getElementById(
-    "adults"
-).addEventListener(
+adults.addEventListener(
     "change",
     aggiornaTotale
 );
 
+aggiornaTotale();
 
-/*
-    FORM
-*/
 
-document.getElementById(
-    "bookingForm"
-).addEventListener(
+/* =========================================================
+   MESSAGGIO
+========================================================= */
+
+function mostraErrore(testo){
+
+    message.textContent =
+        testo;
+
+    message.classList.remove(
+        "success"
+    );
+
+    message.classList.add(
+        "show"
+    );
+
+    window.scrollTo({
+        top:300,
+        behavior:"smooth"
+    });
+
+}
+
+
+function mostraSuccesso(testo){
+
+    message.textContent =
+        testo;
+
+    message.classList.add(
+        "show",
+        "success"
+    );
+
+}
+
+
+/* =========================================================
+   DATA MINIMA
+========================================================= */
+
+const today =
+    new Date()
+        .toISOString()
+        .split("T")[0];
+
+document
+    .getElementById("startDate")
+    .setAttribute(
+        "min",
+        today
+    );
+
+document
+    .getElementById("endDate")
+    .setAttribute(
+        "min",
+        today
+    );
+
+
+/* =========================================================
+   PRENOTAZIONE + STRIPE CHECKOUT
+========================================================= */
+
+form.addEventListener(
     "submit",
-    function(event){
+    async function(event){
 
         event.preventDefault();
 
-
-        const message =
-            document.getElementById("formMessage");
-
+        message.classList.remove(
+            "show",
+            "success"
+        );
 
         const firstName =
-            document.getElementById("firstName").value.trim();
+            document
+                .getElementById("firstName")
+                .value
+                .trim();
 
         const lastName =
-            document.getElementById("lastName").value.trim();
+            document
+                .getElementById("lastName")
+                .value
+                .trim();
 
         const email =
-            document.getElementById("email").value.trim();
+            document
+                .getElementById("email")
+                .value
+                .trim();
 
         const phone =
-            document.getElementById("phone").value.trim();
+            document
+                .getElementById("phone")
+                .value
+                .trim();
 
         const departure =
-            document.getElementById("departure").value.trim();
+            document
+                .getElementById("departure")
+                .value
+                .trim();
 
         const startDate =
-            document.getElementById("startDate").value;
+            document
+                .getElementById("startDate")
+                .value;
 
         const endDate =
-            document.getElementById("endDate").value;
+            document
+                .getElementById("endDate")
+                .value;
+
+        const travelerFirstName =
+            document
+                .getElementById(
+                    "travelerFirstName"
+                )
+                .value
+                .trim();
+
+        const travelerLastName =
+            document
+                .getElementById(
+                    "travelerLastName"
+                )
+                .value
+                .trim();
+
+        const notes =
+            document
+                .getElementById("notes")
+                .value
+                .trim();
 
         const terms =
-            document.getElementById("terms").checked;
+            document
+                .getElementById("terms")
+                .checked;
+
+        const marketing =
+            document
+                .getElementById("marketing")
+                .checked;
+
+        const adultCount =
+            Number(adults.value) || 1;
+
+        const childCount =
+            Number(children.value) || 0;
 
 
-        /*
-            VALIDAZIONE
-        */
+        /* VALIDAZIONE */
 
         if(
             !firstName ||
@@ -1669,130 +1684,221 @@ document.getElementById(
             !phone ||
             !departure ||
             !startDate ||
-            !endDate
+            !endDate ||
+            !travelerFirstName ||
+            !travelerLastName
         ){
 
-            message.textContent =
-                "Completa tutti i campi obbligatori contrassegnati con *.";
-
-            message.classList.add("show");
-
-            window.scrollTo({
-                top:300,
-                behavior:"smooth"
-            });
+            mostraErrore(
+                "Completa tutti i campi obbligatori contrassegnati con *."
+            );
 
             return;
-
         }
 
 
-        if(!email.includes("@")){
+        if(
+            !email.includes("@") ||
+            !email.includes(".")
+        ){
 
-            message.textContent =
-                "Inserisci un indirizzo email valido.";
-
-            message.classList.add("show");
+            mostraErrore(
+                "Inserisci un indirizzo email valido."
+            );
 
             return;
-
         }
 
 
         if(!terms){
 
-            message.textContent =
-                "Devi accettare i termini e condizioni per continuare.";
-
-            message.classList.add("show");
+            mostraErrore(
+                "Devi accettare i termini e condizioni per continuare."
+            );
 
             return;
-
         }
 
-
-        /*
-            CONTROLLO DATE
-        */
 
         if(
             new Date(endDate) <
             new Date(startDate)
         ){
 
-            message.textContent =
-                "La data di ritorno non può essere precedente alla data di partenza.";
-
-            message.classList.add("show");
+            mostraErrore(
+                "La data di ritorno non può essere precedente alla data di partenza."
+            );
 
             return;
-
         }
 
 
-        /*
-            QUI NON EFFETTUIAMO ANCORA IL PAGAMENTO.
+        /* BLOCCO PULSANTE */
 
-            Nel prossimo step collegheremo:
+        button.disabled = true;
 
-            1. Backend
-            2. Database
-            3. Stripe Checkout
-            4. Klarna
-            5. Webhook
-            6. Conferma prenotazione
-            7. Email automatica
-
-        */
+        button.textContent =
+            "ELABORAZIONE IN CORSO...";
 
 
-        message.textContent =
-            "Dati verificati. Il checkout verrà collegato nel prossimo passaggio.";
+        try{
 
-        message.classList.add("show");
+            /* DATI DA INVIARE AL BACKEND */
 
-        message.style.background =
-            "#eaf7f0";
+            const bookingData = {
 
-        message.style.color =
-            "#287552";
+                offer: offerta,
 
-        window.scrollTo({
-            top:300,
-            behavior:"smooth"
-        });
+                customer: {
+
+                    firstName:
+                        firstName,
+
+                    lastName:
+                        lastName,
+
+                    email:
+                        email,
+
+                    phone:
+                        phone
+
+                },
+
+                trip: {
+
+                    departure:
+                        departure,
+
+                    destination:
+                        selected.destination,
+
+                    startDate:
+                        startDate,
+
+                    endDate:
+                        endDate,
+
+                    adults:
+                        adultCount,
+
+                    children:
+                        childCount
+
+                },
+
+                traveler: {
+
+                    firstName:
+                        travelerFirstName,
+
+                    lastName:
+                        travelerLastName
+
+                },
+
+                notes:
+                    notes,
+
+                marketing:
+                    marketing
+
+            };
+
+
+            /* CHIAMATA A VERCEL */
+
+            const response =
+                await fetch(
+                    API_URL,
+                    {
+                        method:"POST",
+
+                        headers:{
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify(
+                                bookingData
+                            )
+                    }
+                );
+
+
+            let data = {};
+
+            try{
+
+                data =
+                    await response.json();
+
+            }catch(jsonError){
+
+                data = {};
+
+            }
+
+
+            if(
+                !response.ok
+            ){
+
+                throw new Error(
+                    data.error ||
+                    "Impossibile creare il pagamento."
+                );
+
+            }
+
+
+            /* URL STRIPE */
+
+            if(
+                !data.url
+            ){
+
+                throw new Error(
+                    "Stripe non ha restituito l'indirizzo del pagamento."
+                );
+
+            }
+
+
+            mostraSuccesso(
+                "Prenotazione preparata. Stai per essere reindirizzato al pagamento sicuro..."
+            );
+
+
+            /* REINDIRIZZAMENTO STRIPE */
+
+            window.location.href =
+                data.url;
+
+
+        }catch(error){
+
+            console.error(
+                "Errore checkout:",
+                error
+            );
+
+            mostraErrore(
+                error.message ||
+                "Si è verificato un errore. Riprova tra poco."
+            );
+
+            button.disabled =
+                false;
+
+            button.textContent =
+                "CONTINUA AL PAGAMENTO →";
+
+        }
 
     }
 );
-
-
-/*
-    DATA MINIMA = OGGI
-*/
-
-const today =
-    new Date().toISOString().split("T")[0];
-
-document.getElementById(
-    "startDate"
-).setAttribute(
-    "min",
-    today
-);
-
-document.getElementById(
-    "endDate"
-).setAttribute(
-    "min",
-    today
-);
-
-
-/*
-    CALCOLO INIZIALE
-*/
-
-aggiornaTotale();
 
 </script>
 
