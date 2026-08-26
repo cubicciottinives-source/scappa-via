@@ -1,6 +1,95 @@
 const Stripe = require("stripe");
 
+const stripe = new Stripe(
+    process.env.STRIPE_SECRET_KEY
+);
+
+
+/*
+ * CORS
+ */
+
+function setCors(res) {
+
+    res.setHeader(
+        "Access-Control-Allow-Origin",
+        "https://scappavia.com"
+    );
+
+    res.setHeader(
+        "Access-Control-Allow-Methods",
+        "POST, OPTIONS"
+    );
+
+    res.setHeader(
+        "Access-Control-Allow-Headers",
+        "Content-Type"
+    );
+
+    res.setHeader(
+        "Access-Control-Allow-Credentials",
+        "true"
+    );
+}
+
+
+/*
+ * OFFERTE
+ */
+
+const OFFER_PRICES = {
+
+    parigi: 14900,
+
+    barcellona: 12900,
+
+    budapest: 9900,
+
+    maldive: 169900
+
+};
+
+
+const OFFER_NAMES = {
+
+    parigi:
+        "Parigi — Weekend",
+
+    barcellona:
+        "Barcellona — Weekend",
+
+    budapest:
+        "Budapest — Weekend",
+
+    maldive:
+        "Maldive — Vacanza"
+
+};
+
+
+/*
+ * FUNZIONE
+ */
+
 module.exports = async function handler(req, res) {
+
+    /*
+     * CORS
+     */
+
+    setCors(res);
+
+
+    /*
+     * PREFLIGHT DEL BROWSER
+     */
+
+    if (req.method === "OPTIONS") {
+
+        return res.status(204).end();
+
+    }
+
 
     /*
      * SOLO POST
@@ -9,79 +98,37 @@ module.exports = async function handler(req, res) {
     if (req.method !== "POST") {
 
         return res.status(405).json({
-            error: "Metodo non consentito."
+
+            error:
+                "Metodo non consentito."
+
         });
 
     }
 
 
     /*
-     * CONTROLLO CHIAVE STRIPE
+     * CONTROLLO STRIPE
      */
 
     const secretKey =
         process.env.STRIPE_SECRET_KEY;
 
+
     if (!secretKey) {
 
         console.error(
-            "STRIPE_SECRET_KEY non configurata su Vercel."
+            "STRIPE_SECRET_KEY mancante."
         );
 
         return res.status(500).json({
+
             error:
                 "Stripe non è configurato correttamente su Vercel."
+
         });
 
     }
-
-
-    /*
-     * INIZIALIZZA STRIPE
-     */
-
-    const stripe =
-        new Stripe(secretKey);
-
-
-    /*
-     * PREZZI DELLE OFFERTE
-     *
-     * Gli importi sono in centesimi.
-     */
-
-    const OFFER_PRICES = {
-
-        parigi: 14900,
-
-        barcellona: 12900,
-
-        budapest: 9900,
-
-        maldive: 169900
-
-    };
-
-
-    /*
-     * NOMI DELLE OFFERTE
-     */
-
-    const OFFER_NAMES = {
-
-        parigi:
-            "Parigi — Weekend",
-
-        barcellona:
-            "Barcellona — Weekend",
-
-        budapest:
-            "Budapest — Weekend",
-
-        maldive:
-            "Maldive — Vacanza"
-
-    };
 
 
     try {
@@ -107,7 +154,7 @@ module.exports = async function handler(req, res) {
 
 
         /*
-         * CONTROLLO OFFERTA
+         * OFFERTA
          */
 
         if (
@@ -119,15 +166,17 @@ module.exports = async function handler(req, res) {
         ) {
 
             return res.status(400).json({
+
                 error:
                     "Offerta non valida."
+
             });
 
         }
 
 
         /*
-         * CONTROLLO CLIENTE
+         * CLIENTE
          */
 
         if (
@@ -138,33 +187,19 @@ module.exports = async function handler(req, res) {
         ) {
 
             return res.status(400).json({
+
                 error:
                     "Dati cliente incompleti."
+
             });
 
         }
 
-
-        /*
-         * CONTROLLO EMAIL
-         */
 
         const email =
-            String(customer.email)
-                .trim();
-
-
-        if (
-            !email.includes("@") ||
-            !email.includes(".")
-        ) {
-
-            return res.status(400).json({
-                error:
-                    "Email non valida."
-            });
-
-        }
+            String(
+                customer.email
+            ).trim();
 
 
         /*
@@ -173,10 +208,7 @@ module.exports = async function handler(req, res) {
 
         const adults =
             Number(
-                trip &&
-                trip.adults
-                    ? trip.adults
-                    : 1
+                trip?.adults || 1
             );
 
 
@@ -187,8 +219,10 @@ module.exports = async function handler(req, res) {
         ) {
 
             return res.status(400).json({
+
                 error:
                     "Numero di adulti non valido."
+
             });
 
         }
@@ -200,53 +234,20 @@ module.exports = async function handler(req, res) {
 
         const children =
             Number(
-                trip &&
-                trip.children
-                    ? trip.children
-                    : 0
+                trip?.children || 0
             );
 
 
         /*
-         * PREZZO
-         */
-
-        const unitAmount =
-            OFFER_PRICES[offer];
-
-
-        const productName =
-            OFFER_NAMES[offer];
-
-
-        /*
-         * URL DI RITORNO
-         */
-
-        const successUrl =
-            "https://scappavia.com/success.html" +
-            "?session_id={CHECKOUT_SESSION_ID}";
-
-
-        const cancelUrl =
-            "https://scappavia.com/prenotazione.html" +
-            "?offerta=" +
-            encodeURIComponent(offer);
-
-
-        /*
-         * CREA SESSIONE STRIPE
+         * CREA CHECKOUT STRIPE
          */
 
         const session =
             await stripe.checkout.sessions.create({
 
-                mode: "payment",
+                mode:
+                    "payment",
 
-
-                /*
-                 * PRODOTTO
-                 */
 
                 line_items: [
 
@@ -254,17 +255,18 @@ module.exports = async function handler(req, res) {
 
                         price_data: {
 
-                            currency: "eur",
+                            currency:
+                                "eur",
 
                             product_data: {
 
                                 name:
-                                    productName
+                                    OFFER_NAMES[offer]
 
                             },
 
                             unit_amount:
-                                unitAmount
+                                OFFER_PRICES[offer]
 
                         },
 
@@ -276,40 +278,33 @@ module.exports = async function handler(req, res) {
                 ],
 
 
-                /*
-                 * EMAIL CLIENTE
-                 */
-
                 customer_email:
                     email,
 
-
-                /*
-                 * INDIRIZZO DI FATTURAZIONE
-                 */
 
                 billing_address_collection:
                     "required",
 
 
                 /*
-                 * METODI DI PAGAMENTO
-                 *
-                 * Stripe mostrerà i metodi
-                 * compatibili con il tuo account.
+                 * PER ORA CARTA
+                 * Stripe TEST
                  */
 
                 payment_method_types: [
+
                     "card"
+
                 ],
 
 
                 /*
-                 * PAGINA SUCCESSO
+                 * SUCCESSO
                  */
 
                 success_url:
-                    successUrl,
+                    "https://scappavia.com/success.html" +
+                    "?session_id={CHECKOUT_SESSION_ID}",
 
 
                 /*
@@ -317,11 +312,13 @@ module.exports = async function handler(req, res) {
                  */
 
                 cancel_url:
-                    cancelUrl,
+                    "https://scappavia.com/prenotazione.html" +
+                    "?offerta=" +
+                    encodeURIComponent(offer),
 
 
                 /*
-                 * DATI DELLA PRENOTAZIONE
+                 * DATI PRENOTAZIONE
                  */
 
                 metadata: {
@@ -404,7 +401,8 @@ module.exports = async function handler(req, res) {
 
         return res.status(200).json({
 
-            success: true,
+            success:
+                true,
 
             url:
                 session.url,
@@ -422,11 +420,6 @@ module.exports = async function handler(req, res) {
             error
         );
 
-
-        /*
-         * RESTITUISCE L'ERRORE REALE
-         * DURANTE IL TEST
-         */
 
         return res.status(500).json({
 
