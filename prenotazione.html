@@ -1809,9 +1809,9 @@ form.addEventListener(
             /* CHIAMATA A VERCEL */
 
             const response =
-                await fetch(
-                    API_URL,
-                    {
+    await fetch(
+        "/api/create-checkout-session",
+        {
                         method:"POST",
 
                         headers:{
