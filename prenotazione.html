@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Prenotazione | SCAPPA VIA</title>
+
+<meta
+    name="description"
+    content="Completa la tua prenotazione con SCAPPA VIA."
+>
+
+<style>
+
+:root{
+    --pink:#e889a7;
+    --pink-dark:#c85f83;
+    --pink-light:#fdf0f5;
+    --rose:#f7dce7;
+    --white:#ffffff;
+    --text:#382a31;
+    --muted:#806f77;
+    --dark:#281d24;
+    --border:#f0dce4;
+    --green:#3d9b70;
+    --shadow:0 18px 50px rgba(100,45,70,.10);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#fffafb;
+    color:var(--text);
+    line-height:1.5;
+}
+
+a{
+    color:inherit;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+
+/* HEADER */
+
+header{
+    background:white;
+    border-bottom:1px solid var(--border);
+    padding:18px 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo img{
+    width:165px;
+}
+
+nav{
+    display:flex;
+    align-items:center;
+    gap:26px;
+}
+
+nav a{
+    text-decoration:none;
+    font-size:14px;
+    font-weight:700;
+}
+
+nav a:hover{
+    color:var(--pink-dark);
+}
+
+.nav-button{
+    background:var(--pink-dark);
+    color:white!important;
+    padding:11px 20px;
+    border-radius:30px;
+}
+
+.mobile-menu{
+    display:none;
+    border:0;
+    background:var(--pink-light);
+    color:var(--pink-dark);
+    width:42px;
+    height:42px;
+    border-radius:10px;
+    font-size:23px;
+}
+
+
+/* PAGE */
+
+.page{
+    padding:55px 0 90px;
+}
+
+.container{
+    width:min(1200px,92%);
+    margin:auto;
+}
+
+.breadcrumb{
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:30px;
+}
+
+.breadcrumb a{
+    text-decoration:none;
+}
+
+.breadcrumb a:hover{
+    color:var(--pink-dark);
+}
+
+.page-title{
+    margin-bottom:35px;
+}
+
+.eyebrow{
+    color:var(--pink-dark);
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    font-size:12px;
+    font-weight:900;
+    margin-bottom:9px;
+}
+
+.page-title h1{
+    font-size:clamp(38px,5vw,55px);
+    line-height:1.05;
+    margin-bottom:10px;
+}
+
+.page-title p{
+    color:var(--muted);
+}
+
+
+/* LAYOUT */
+
+.booking-layout{
+    display:grid;
+    grid-template-columns:1.25fr .75fr;
+    gap:30px;
+    align-items:start;
+}
+
+
+/* FORM */
+
+.booking-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:25px;
+    padding:38px;
+    box-shadow:var(--shadow);
+}
+
+.booking-card h2{
+    font-size:27px;
+    margin-bottom:8px;
+}
+
+.booking-card > p{
+    color:var(--muted);
+    font-size:14px;
+    margin-bottom:28px;
+}
+
+
+/* STEPS */
+
+.steps{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:35px;
+}
+
+.step{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    font-size:12px;
+    color:#aaa;
+    font-weight:800;
+}
+
+.step-number{
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#eee;
+}
+
+.step.active{
+    color:var(--pink-dark);
+}
+
+.step.active .step-number{
+    background:var(--pink-dark);
+    color:white;
+}
+
+.step-line{
+    height:1px;
+    flex:1;
+    background:var(--border);
+}
+
+
+/* FORM SECTIONS */
+
+.form-section{
+    margin-bottom:35px;
+}
+
+.form-section h3{
+    font-size:19px;
+    margin-bottom:17px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.form-group.full{
+    grid-column:1 / -1;
+}
+
+.form-group label{
+    font-size:13px;
+    font-weight:800;
+    margin-bottom:7px;
+}
+
+.form-group label span{
+    color:var(--pink-dark);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    border:1px solid #e5d7dd;
+    border-radius:11px;
+    padding:14px;
+    font-family:inherit;
+    font-size:14px;
+    color:var(--text);
+    outline:none;
+    background:white;
+    transition:.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:var(--pink);
+    box-shadow:0 0 0 3px rgba(232,137,167,.12);
+}
+
+.form-group textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.help{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:5px;
+}
+
+
+/* TRAVELERS */
+
+.traveler{
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:12px;
+    background:#fffdfd;
+}
+
+.traveler-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.traveler-header strong{
+    font-size:15px;
+}
+
+.traveler-header span{
+    background:var(--pink-light);
+    color:var(--pink-dark);
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:800;
+}
+
+
+/* CHECKBOX */
+
+.checkbox{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    margin-top:18px;
+    font-size:13px;
+    color:var(--muted);
+}
+
+.checkbox input{
+    margin-top:4px;
+    accent-color:var(--pink-dark);
+}
+
+.checkbox a{
+    color:var(--pink-dark);
+}
+
+
+/* CONTINUE */
+
+.continue-button{
+    width:100%;
+    border:0;
+    background:var(--pink-dark);
+    color:white;
+    padding:17px;
+    border-radius:13px;
+    font-size:16px;
+    font-weight:900;
+    cursor:pointer;
+    margin-top:20px;
+    transition:.2s;
+}
+
+.continue-button:hover{
+    background:#ad4d6e;
+    transform:translateY(-2px);
+}
+
+.secure-note{
+    text-align:center;
+    color:var(--muted);
+    font-size:12px;
+    margin-top:13px;
+}
+
+
+/* SUMMARY */
+
+.summary{
+    position:sticky;
+    top:100px;
+}
+
+.summary-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+}
+
+.summary-image{
+    height:220px;
+    background:
+        linear-gradient(
+            rgba(0,0,0,.04),
+            rgba(0,0,0,.18)
+        ),
+        url("https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1200&q=85")
+        center/cover;
+}
+
+.summary-content{
+    padding:28px;
+}
+
+.summary-badge{
+    display:inline-block;
+    background:var(--pink-light);
+    color:var(--pink-dark);
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:900;
+    margin-bottom:10px;
+}
+
+.summary-content h2{
+    font-size:29px;
+    margin-bottom:5px;
+}
+
+.summary-location{
+    color:var(--muted);
+    font-size:14px;
+    margin-bottom:22px;
+}
+
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:12px 0;
+    border-bottom:1px solid var(--border);
+    font-size:14px;
+}
+
+.summary-row span{
+    color:var(--muted);
+}
+
+.total{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    margin-top:23px;
+}
+
+.total span{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.total strong{
+    color:var(--pink-dark);
+    font-size:31px;
+}
+
+
+/* PAYMENT PREVIEW */
+
+.payment-preview{
+    margin-top:18px;
+    background:var(--pink-light);
+    border-radius:15px;
+    padding:18px;
+}
+
+.payment-preview h3{
+    font-size:14px;
+    margin-bottom:10px;
+}
+
+.payment-methods{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+}
+
+.payment-method{
+    background:white;
+    border:1px solid var(--border);
+    padding:7px 10px;
+    border-radius:8px;
+    font-size:11px;
+    font-weight:800;
+}
+
+.payment-note{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:10px;
+}
+
+
+/* ALERT */
+
+.form-message{
+    display:none;
+    padding:14px;
+    border-radius:12px;
+    margin-bottom:20px;
+    background:#fff0f3;
+    color:#a94b68;
+    font-size:13px;
+    font-weight:700;
+}
+
+.form-message.show{
+    display:block;
+}
+
+
+/* FOOTER */
+
+footer{
+    background:#211820;
+    color:white;
+    padding:50px 0 25px;
+}
+
+.footer-grid{
+    width:min(1200px,92%);
+    margin:auto;
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr 1fr;
+    gap:35px;
+}
+
+.footer-brand img{
+    width:165px;
+    margin-bottom:14px;
+    filter:brightness(0) invert(1);
+}
+
+.footer-brand p{
+    color:#c9bec3;
+    max-width:300px;
+}
+
+.footer-column h4{
+    margin-bottom:14px;
+}
+
+.footer-column a{
+    display:block;
+    text-decoration:none;
+    color:#c9bec3;
+    margin:8px 0;
+    font-size:14px;
+}
+
+.footer-column a:hover{
+    color:white;
+}
+
+.footer-bottom{
+    width:min(1200px,92%);
+    margin:40px auto 0;
+    padding-top:20px;
+    border-top:1px solid rgba(255,255,255,.1);
+    color:#9e9298;
+    font-size:13px;
+    display:flex;
+    justify-content:space-between;
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width:950px){
+
+    nav{
+        display:none;
+    }
+
+    .mobile-menu{
+        display:block;
+    }
+
+    .booking-layout{
+        grid-template-columns:1fr;
+    }
+
+    .summary{
+        position:static;
+        grid-row:1;
+    }
+
+    .booking-card{
+        grid-row:2;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+
+@media(max-width:600px){
+
+    header{
+        padding:15px 5%;
+    }
+
+    .logo img{
+        width:145px;
+    }
+
+    .page{
+        padding-top:35px;
+    }
+
+    .booking-card{
+        padding:24px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+    .steps{
+        gap:5px;
+    }
+
+    .step{
+        font-size:10px;
+    }
+
+    .step-line{
+        display:none;
+    }
+
+    .summary-image{
+        height:190px;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+
+    .footer-bottom{
+        flex-direction:column;
+        gap:10px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <a href="index.html" class="logo">
+
+        <img
+            src="assets/logo/scappa-via-logo.png"
+            alt="SCAPPA VIA"
+        >
+
+    </a>
+
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="index.html#offerte">
+            Offerte
+        </a>
+
+        <a href="index.html#destinazioni">
+            Destinazioni
+        </a>
+
+        <a href="index.html#perche">
+            Perché noi
+        </a>
+
+        <a
+            href="index.html"
+            class="nav-button"
+        >
+            Torna alle offerte
+        </a>
+
+    </nav>
+
+
+    <button
+        class="mobile-menu"
+        aria-label="Menu"
+    >
+        ☰
+    </button>
+
+</header>
+
+
+
+<!-- PAGE -->
+
+<main class="page">
+
+<div class="container">
+
+
+    <!-- BREADCRUMB -->
+
+    <div class="breadcrumb">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        &nbsp; / &nbsp;
+
+        <a href="offerta.html">
+            Offerta
+        </a>
+
+        &nbsp; / &nbsp;
+
+        Prenotazione
+
+    </div>
+
+
+
+    <!-- TITLE -->
+
+    <div class="page-title">
+
+        <div class="eyebrow">
+            Quasi pronti a partire
+        </div>
+
+        <h1>
+            Completa la prenotazione
+        </h1>
+
+        <p>
+            Inserisci i dati richiesti per preparare
+            il tuo viaggio.
+        </p>
+
+    </div>
+
+
+
+    <!-- LAYOUT -->
+
+    <div class="booking-layout">
+
+
+        <!-- FORM -->
+
+        <section class="booking-card">
+
+
+            <!-- STEPS -->
+
+            <div class="steps">
+
+                <div class="step active">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    Dati
+
+                </div>
+
+
+                <div class="step-line"></div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    Pagamento
+
+                </div>
+
+
+                <div class="step-line"></div>
+
+
+                <div class="step">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    Conferma
+
+                </div>
+
+            </div>
+
+
+
+            <h2>
+                Dati del viaggiatore
+            </h2>
+
+            <p>
+                Inserisci i dati della persona che effettuerà
+                la prenotazione.
+            </p>
+
+
+            <div
+                id="formMessage"
+                class="form-message"
+            ></div>
+
+
+
+            <form
+                id="bookingForm"
+                novalidate
+            >
+
+
+                <!-- CONTATTI -->
+
+                <div class="form-section">
+
+                    <h3>
+                        👤 Informazioni personali
+                    </h3>
+
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group">
+
+                            <label for="firstName">
+                                Nome <span>*</span>
+                            </label>
+
+                            <input
+                                id="firstName"
+                                name="firstName"
+                                type="text"
+                                autocomplete="given-name"
+                                placeholder="Mario"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="lastName">
+                                Cognome <span>*</span>
+                            </label>
+
+                            <input
+                                id="lastName"
+                                name="lastName"
+                                type="text"
+                                autocomplete="family-name"
+                                placeholder="Rossi"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="email">
+                                Email <span>*</span>
+                            </label>
+
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                autocomplete="email"
+                                placeholder="mario@email.it"
+                                required
+                            >
+
+                            <div class="help">
+                                Utilizzeremo questa email per
+                                la conferma della prenotazione.
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="phone">
+                                Telefono <span>*</span>
+                            </label>
+
+                            <input
+                                id="phone"
+                                name="phone"
+                                type="tel"
+                                autocomplete="tel"
+                                placeholder="+39 333 1234567"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- VIAGGIO -->
+
+                <div class="form-section">
+
+                    <h3>
+                        ✈️ Dettagli del viaggio
+                    </h3>
+
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group">
+
+                            <label for="departure">
+                                Partenza <span>*</span>
+                            </label>
+
+                            <input
+                                id="departure"
+                                name="departure"
+                                type="text"
+                                placeholder="Es. Roma"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="destination">
+                                Destinazione
+                            </label>
+
+                            <input
+                                id="destination"
+                                name="destination"
+                                type="text"
+                                value="Parigi"
+                                readonly
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="startDate">
+                                Data partenza <span>*</span>
+                            </label>
+
+                            <input
+                                id="startDate"
+                                name="startDate"
+                                type="date"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="endDate">
+                                Data ritorno <span>*</span>
+                            </label>
+
+                            <input
+                                id="endDate"
+                                name="endDate"
+                                type="date"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="adults">
+                                Adulti <span>*</span>
+                            </label>
+
+                            <select
+                                id="adults"
+                                name="adults"
+                                required
+                            >
+
+                                <option value="1">
+                                    1 adulto
+                                </option>
+
+                                <option
+                                    value="2"
+                                    selected
+                                >
+                                    2 adulti
+                                </option>
+
+                                <option value="3">
+                                    3 adulti
+                                </option>
+
+                                <option value="4">
+                                    4 adulti
+                                </option>
+
+                                <option value="5">
+                                    5 adulti
+                                </option>
+
+                                <option value="6">
+                                    6 adulti
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="children">
+                                Bambini
+                            </label>
+
+                            <select
+                                id="children"
+                                name="children"
+                            >
+
+                                <option value="0">
+                                    Nessuno
+                                </option>
+
+                                <option value="1">
+                                    1 bambino
+                                </option>
+
+                                <option value="2">
+                                    2 bambini
+                                </option>
+
+                                <option value="3">
+                                    3 bambini
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- VIAGGIATORI -->
+
+                <div class="form-section">
+
+                    <h3>
+                        🧳 Dati dei viaggiatori
+                    </h3>
+
+
+                    <div class="traveler">
+
+                        <div class="traveler-header">
+
+                            <strong>
+                                Viaggiatore principale
+                            </strong>
+
+                            <span>
+                                ADULTO
+                            </span>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label for="travelerFirstName">
+                                    Nome <span>*</span>
+                                </label>
+
+                                <input
+                                    id="travelerFirstName"
+                                    type="text"
+                                    placeholder="Nome"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="travelerLastName">
+                                    Cognome <span>*</span>
+                                </label>
+
+                                <input
+                                    id="travelerLastName"
+                                    type="text"
+                                    placeholder="Cognome"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RICHIESTE -->
+
+                <div class="form-section">
+
+                    <h3>
+                        💬 Richieste speciali
+                    </h3>
+
+
+                    <div class="form-group">
+
+                        <label for="notes">
+                            Note
+                        </label>
+
+                        <textarea
+                            id="notes"
+                            name="notes"
+                            placeholder="Hai richieste particolari? Scrivile qui..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PRIVACY -->
+
+                <div class="checkbox">
+
+                    <input
+                        id="terms"
+                        type="checkbox"
+                        required
+                    >
+
+                    <label for="terms">
+
+                        Ho letto e accetto i
+                        <a href="#">
+                            termini e condizioni
+                        </a>
+                        e la
+                        <a href="#">
+                            privacy policy
+                        </a>.
+                        <strong>*</strong>
+
+                    </label>
+
+                </div>
+
+
+                <div class="checkbox">
+
+                    <input
+                        id="marketing"
+                        type="checkbox"
+                    >
+
+                    <label for="marketing">
+
+                        Desidero ricevere offerte e comunicazioni
+                        promozionali di SCAPPA VIA.
+
+                    </label>
+
+                </div>
+
+
+
+                <!-- BUTTON -->
+
+                <button
+                    type="submit"
+                    class="continue-button"
+                >
+                    CONTINUA AL PAGAMENTO →
+                </button>
+
+
+                <div class="secure-note">
+
+                    🔒 I tuoi dati saranno trattati in modo sicuro.
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+
+        <!-- SUMMARY -->
+
+        <aside class="summary">
+
+
+            <div class="summary-card">
+
+
+                <div class="summary-image"></div>
+
+
+                <div class="summary-content">
+
+
+                    <span class="summary-badge">
+                        OFFERTA SPECIALE
+                    </span>
+
+
+                    <h2 id="summaryDestination">
+                        Parigi
+                    </h2>
+
+
+                    <div class="summary-location">
+                        🇫🇷 Weekend · Volo + soggiorno
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>
+                            Durata
+                        </span>
+
+                        <strong>
+                            4 giorni / 3 notti
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>
+                            Viaggiatori
+                        </span>
+
+                        <strong id="summaryGuests">
+                            2 adulti
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>
+                            Prezzo persona
+                        </span>
+
+                        <strong id="summaryPrice">
+                            €149
+                        </strong>
+
+                    </div>
+
+
+                    <div class="total">
+
+                        <span>
+                            Totale indicativo
+                        </span>
+
+                        <strong id="summaryTotal">
+                            €298
+                        </strong>
+
+                    </div>
+
+
+                    <div class="payment-preview">
+
+                        <h3>
+                            Pagamento disponibile prossimamente
+                        </h3>
+
+
+                        <div class="payment-methods">
+
+                            <span class="payment-method">
+                                💳 Carta
+                            </span>
+
+                            <span class="payment-method">
+                                Apple Pay
+                            </span>
+
+                            <span class="payment-method">
+                                Google Pay
+                            </span>
+
+                            <span class="payment-method">
+                                Klarna
+                            </span>
+
+                        </div>
+
+
+                        <div class="payment-note">
+
+                            Il checkout definitivo verrà collegato
+                            al sistema di pagamento sicuro.
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+</div>
+
+</main>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-grid">
+
+
+        <div class="footer-brand">
+
+            <img
+                src="assets/logo/scappa-via-logo.png"
+                alt="SCAPPA VIA"
+            >
+
+            <p>
+                Trova l'offerta. Prepara la valigia.
+                Parti.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>
+                SCAPPA VIA
+            </h4>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="index.html#offerte">
+                Offerte
+            </a>
+
+            <a href="index.html#destinazioni">
+                Destinazioni
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>
+                Assistenza
+            </h4>
+
+            <a href="#">
+                Contatti
+            </a>
+
+            <a href="#">
+                FAQ
+            </a>
+
+            <a href="#">
+                Termini e condizioni
+            </a>
+
+            <a href="#">
+                Privacy Policy
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>
+                Seguici
+            </h4>
+
+            <a href="#">
+                Instagram
+            </a>
+
+            <a href="#">
+                Facebook
+            </a>
+
+            <a href="#">
+                TikTok
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 Scappa Via. Tutti i diritti riservati.
+        </span>
+
+        <span>
+            Viaggi che lasciano il segno.
+        </span>
+
+    </div>
+
+</footer>
+
+
+
+<script>
+
+/*
+    CONFIGURAZIONE DELLE OFFERTE
+
+    Per ora i dati sono locali.
+    Successivamente li sposteremo nel database.
+*/
+
+const offerte = {
+
+    parigi: {
+        destination: "Parigi",
+        price: 149
+    },
+
+    barcellona: {
+        destination: "Barcellona",
+        price: 129
+    },
+
+    budapest: {
+        destination: "Budapest",
+        price: 99
+    },
+
+    maldive: {
+        destination: "Maldive",
+        price: 1699
+    }
+
+};
+
+
+/*
+    LEGGE L'OFFERTA DALL'URL
+*/
+
+const params =
+    new URLSearchParams(window.location.search);
+
+const offerta =
+    params.get("offerta") || "parigi";
+
+const selected =
+    offerte[offerta] || offerte.parigi;
+
+
+/*
+    AGGIORNA IL RIEPILOGO
+*/
+
+document.getElementById(
+    "summaryDestination"
+).textContent =
+    selected.destination;
+
+document.getElementById(
+    "summaryPrice"
+).textContent =
+    "€" + selected.price;
+
+
+/*
+    AGGIORNA DESTINAZIONE
+*/
+
+document.getElementById(
+    "destination"
+).value =
+    selected.destination;
+
+
+/*
+    AGGIORNA IL TOTALE
+*/
+
+function aggiornaTotale(){
+
+    const adults =
+        Number(
+            document.getElementById("adults").value
+        ) || 1;
+
+    const total =
+        selected.price * adults;
+
+    document.getElementById(
+        "summaryGuests"
+    ).textContent =
+        adults +
+        (adults === 1 ? " adulto" : " adulti");
+
+    document.getElementById(
+        "summaryTotal"
+    ).textContent =
+        "€" + total;
+
+}
+
+
+/*
+    ASCOLTA CAMBIO ADULTI
+*/
+
+document.getElementById(
+    "adults"
+).addEventListener(
+    "change",
+    aggiornaTotale
+);
+
+
+/*
+    FORM
+*/
+
+document.getElementById(
+    "bookingForm"
+).addEventListener(
+    "submit",
+    function(event){
+
+        event.preventDefault();
+
+
+        const message =
+            document.getElementById("formMessage");
+
+
+        const firstName =
+            document.getElementById("firstName").value.trim();
+
+        const lastName =
+            document.getElementById("lastName").value.trim();
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        const phone =
+            document.getElementById("phone").value.trim();
+
+        const departure =
+            document.getElementById("departure").value.trim();
+
+        const startDate =
+            document.getElementById("startDate").value;
+
+        const endDate =
+            document.getElementById("endDate").value;
+
+        const terms =
+            document.getElementById("terms").checked;
+
+
+        /*
+            VALIDAZIONE
+        */
+
+        if(
+            !firstName ||
+            !lastName ||
+            !email ||
+            !phone ||
+            !departure ||
+            !startDate ||
+            !endDate
+        ){
+
+            message.textContent =
+                "Completa tutti i campi obbligatori contrassegnati con *.";
+
+            message.classList.add("show");
+
+            window.scrollTo({
+                top:300,
+                behavior:"smooth"
+            });
+
+            return;
+
+        }
+
+
+        if(!email.includes("@")){
+
+            message.textContent =
+                "Inserisci un indirizzo email valido.";
+
+            message.classList.add("show");
+
+            return;
+
+        }
+
+
+        if(!terms){
+
+            message.textContent =
+                "Devi accettare i termini e condizioni per continuare.";
+
+            message.classList.add("show");
+
+            return;
+
+        }
+
+
+        /*
+            CONTROLLO DATE
+        */
+
+        if(
+            new Date(endDate) <
+            new Date(startDate)
+        ){
+
+            message.textContent =
+                "La data di ritorno non può essere precedente alla data di partenza.";
+
+            message.classList.add("show");
+
+            return;
+
+        }
+
+
+        /*
+            QUI NON EFFETTUIAMO ANCORA IL PAGAMENTO.
+
+            Nel prossimo step collegheremo:
+
+            1. Backend
+            2. Database
+            3. Stripe Checkout
+            4. Klarna
+            5. Webhook
+            6. Conferma prenotazione
+            7. Email automatica
+
+        */
+
+
+        message.textContent =
+            "Dati verificati. Il checkout verrà collegato nel prossimo passaggio.";
+
+        message.classList.add("show");
+
+        message.style.background =
+            "#eaf7f0";
+
+        message.style.color =
+            "#287552";
+
+        window.scrollTo({
+            top:300,
+            behavior:"smooth"
+        });
+
+    }
+);
+
+
+/*
+    DATA MINIMA = OGGI
+*/
+
+const today =
+    new Date().toISOString().split("T")[0];
+
+document.getElementById(
+    "startDate"
+).setAttribute(
+    "min",
+    today
+);
+
+document.getElementById(
+    "endDate"
+).setAttribute(
+    "min",
+    today
+);
+
+
+/*
+    CALCOLO INIZIALE
+*/
+
+aggiornaTotale();
+
+</script>
+
+</body>
+</html>
